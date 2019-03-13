@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:annotation-config/>
+
+	<!-- 1.jdbc.properties 등록 -->
+	<context:property-placeholder
+		location="classpath:com/config/jdbc.properties" />
+
+	<!-- 2.DBCP -->
+	<bean id="myDataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.userid}" />
+		<property name="password" value="${jdbc.passwd}" />
+	</bean>
+	
+	
+	<!-- 3.SqlSessionFactoryBean --><!-- mapper, alias -->
+	<bean id="mySessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:com/config/BoardMapper.xml</value>
+            </list>
+        </property>
+        <property name="typeAliases" >
+        	<list>
+        		<value>com.dto.DeptDTO</value>	<!-- alias를 따로 줘야함 해당 클래스에서 @Alias로 정함 -->
+        	</list>
+        </property>
+    </bean>
+	
+	<!-- 4.SqlSessionTemlate => SqlSession기능 -->
+	<bean id="mySessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="mySessionFactory"/>
+	</bean>
+
+
+
+	<bean id="deptDAO" class="com.dao.BoardDAO" />
+	
+	<bean id="deptService" class="com.service.BoardService" />
+		<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	
+</beans>
