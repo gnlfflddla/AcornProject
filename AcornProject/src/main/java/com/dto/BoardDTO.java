@@ -2,7 +2,6 @@ package com.dto;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("Board")
 public class BoardDTO {
 	private int num;
 	private String author;
