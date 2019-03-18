@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 1.jdbc.properties 등록 -->
+	<context:property-placeholder
+		location="classpath:com/config/jdbc.properties" />
+
+	<!-- 2.DBCP -->
+	<bean id="myDataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.userid}" />
+		<property name="password" value="${jdbc.passwd}" />
+	</bean>
+	
+	
+	<!-- 3.SqlSessionFactoryBean --><!-- mapper, alias -->
+	<bean id="mySessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:com/config/DeptMapper.xml</value>
+            </list>
+        </property>
+        <property name="typeAliases" >
+        	<list>
+        		<value>com.dto.DeptDTO</value>	<!-- alias를 따로 줘야함 해당 클래스에서 @Alias로 정함 -->
+        	</list>
+        </property>
+    </bean>
+	
+	<!-- 4.SqlSessionTemlate => SqlSession기능 -->
+	<bean id="mySessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="mySessionFactory"/>
+	</bean>
+
+	<!-- 5.transaction 설정 -->
+	<tx:annotation-driven/>
+	 <bean id="transactionManager"
+            class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="myDataSource"/>
+    </bean>
+		
+		
+</beans>
