@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 1.jdbc.properties 등록 -->
 	<context:property-placeholder
@@ -21,35 +21,29 @@
 		<property name="username" value="${jdbc.userid}" />
 		<property name="password" value="${jdbc.passwd}" />
 	</bean>
-	
-	
+
+
 	<!-- 3.SqlSessionFactoryBean --><!-- mapper, alias -->
-	<bean id="mySessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="myDataSource"/>
-        <property name="mapperLocations">
-            <list>
-                <value>classpath:com/config/BoardMapper.xml</value>
-            </list>
-        </property>
-        <property name="typeAliases" >
-        	<list>
-        		<value>com.dto.BoardDTO</value>	<!-- alias를 따로 줘야함 해당 클래스에서 @Alias로 정함 -->
-        		<value>com.dto.BoardPageDTO</value>	
-        	</list>
-        </property>
-    </bean>
-	
+	<bean id="mySessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="configLocation"
+			value="classpath:com/config/Configuration.xml" />
+	</bean>
+
 	<!-- 4.SqlSessionTemlate => SqlSession기능 -->
-	<bean id="mySessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg name="sqlSessionFactory" ref="mySessionFactory"/>
+	<bean id="mySessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory"
+			ref="mySessionFactory" />
 	</bean>
 
 	<!-- 5.transaction 설정 -->
-	<tx:annotation-driven/>
-	 <bean id="transactionManager"
-            class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="myDataSource"/>
-    </bean>
-		
-		
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+
+
 </beans>
