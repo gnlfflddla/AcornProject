@@ -1,0 +1,20 @@
+/* 헤드영역 */
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 10px;
+}
+
+div.center {
+	/* width:300px; */
+	margin : auto;
+}
+
+p.font{
+	font-family : '나눔손글씨 펜';
+	font-size : 19px;
+	}
+	
+a { text-decoration:none }

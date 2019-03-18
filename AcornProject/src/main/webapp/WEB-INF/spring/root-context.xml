@@ -28,12 +28,13 @@
         <property name="dataSource" ref="myDataSource"/>
         <property name="mapperLocations">
             <list>
-                <value>classpath:com/config/DeptMapper.xml</value>
+                <value>classpath:com/config/BoardMapper.xml</value>
             </list>
         </property>
         <property name="typeAliases" >
         	<list>
-        		<value>com.dto.DeptDTO</value>	<!-- alias를 따로 줘야함 해당 클래스에서 @Alias로 정함 -->
+        		<value>com.dto.BoardDTO</value>	<!-- alias를 따로 줘야함 해당 클래스에서 @Alias로 정함 -->
+        		<value>com.dto.BoardPageDTO</value>	
         	</list>
         </property>
     </bean>

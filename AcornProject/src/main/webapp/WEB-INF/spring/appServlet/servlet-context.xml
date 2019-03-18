@@ -2,21 +2,46 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
+	
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+
+	<!-- 정적 파일 등록 -->
+	<mvc:resources location="/WEB-INF/images/"
+		mapping="/images/**" />
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
+	<mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
+	
+	<!-- 단순 화면 변환 -->
+	<mvc:view-controller path="/LoginUI" view-name="loginForm"/>
+
+	<mvc:view-resolvers>
+		<mvc:bean-name>
+			<bean
+				class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			</bean>
+		</mvc:bean-name>
+		<mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp" />
+	</mvc:view-resolvers>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/m/**"/>
+			<bean class="com.interceptor.LoginCheckInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<context:component-scan base-package="com.*" />
 	
 
 
-
-	<bean id="deptDAO" class="com.dao.BoardDAO" />
 	
-	<bean id="deptService" class="com.service.BoardService" />
-		<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
 
-	
 </beans>
