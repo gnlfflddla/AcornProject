@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <jsp:include page="../css/Form.jsp"/>
 
-<c:set var="mesg" value="${mesg}" scope="session"/>
+<c:set var="mesg" value="${mesg}"/>
 <c:if test="${empty mesg==false}">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">

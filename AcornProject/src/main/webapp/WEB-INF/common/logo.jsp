@@ -8,7 +8,7 @@
 </head>
 <body>
 <div align="center">
-	<a href=MainServlet>
+	<a href=main>
 	<img alt="daemoon" src="images/dae.jpg"></a>
 	</div>
 </body>

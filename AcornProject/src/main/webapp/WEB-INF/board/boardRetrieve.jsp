@@ -49,39 +49,30 @@
 
 		});
 
-						/* 	$("#writeCmt").on("click", function() {
-								var queryString = $("form[name=commentForm]").serialize();
-								$.ajax({
-									type : "post",
-									url : "cwrite.do",
-									data : queryString,
-									dataType : "text",
-									success : function(responsedata, status, xhr) {
-										console.log(responsedata);
-									},
-									error : function(jqXHR, textStatus, errorThrown) {
-										console.log(errorThrown);
-									}
-								});
-							}); */
-					});
+				
+	});
 </script>
 </head>
 <body>
 	<h1>글 자세히 보기</h1>
-	<form action="update.do" method="post">
+	<form action="update" method="post">
 		<!-- 글 수정시 필요 -->
 		<input type="hidden" name="num" value="${retrieve.num}"> 글번호 :
 		${retrieve.num} &nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${retrieve.readcnt}<br>
 		제목 : <input type="text" name="title" value="${retrieve.title}"><br>
 		작성자 : <input type="text" name="author" value="${retrieve.author}"><br>
-		내용 :
-		<textarea rows="10" name="content">${retrieve.content}</textarea>
+		내용 <br>
+		<textarea rows="10" name="content" style="height: 100;width: 300">${retrieve.content}</textarea><br>
 		<input type="submit" value="수정">
 	</form>
-	<a href="list.do">목록</a>
-	<a href="delete.do?num=${retrieve.num}">삭제</a>
-	<a href="replyui.do?num=${retrieve.num}">답변달기</a>
+	<a href="list">목록</a>
+	<%-- <c:if test="작성자 아이디와 로그인 아이디가 같을경우 활성화"> --%>
+	<a href="delete?num=${retrieve.num}">삭제</a>
+	<%-- 	</c:if> --%>
+	<!-- 게시판 게시글에대한 답변을 위한 replyui 관리자만 달수 있도록 만들 것 -->
+	<%-- <c:if test="관리자 일때 경우 활성화"> --%>
+	<a href="replyui?num=${retrieve.num}">답변달기</a>
+	<%-- 	</c:if> --%>
 	<hr>
 	
 	<c:if test="${cmtPDTO != null}">

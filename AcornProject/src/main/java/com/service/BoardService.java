@@ -2,13 +2,14 @@ package com.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dao.BoardDAO;
 import com.dto.BoardDTO;
 import com.dto.CommentDTO;
 import com.dto.CommentPageDTO;
 import com.dto.BoardPageDTO;
-
+@Service
 public class BoardService {
 	@Autowired
 	BoardDAO dao;

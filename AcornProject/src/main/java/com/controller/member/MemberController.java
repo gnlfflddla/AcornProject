@@ -24,7 +24,7 @@ public class MemberController {
 		dto=mservice.login(map);
 		if(dto!=null) {
 			session.setAttribute("login", dto);
-			nextPage="redirect:/main";
+			nextPage="main";
 		}else {
 			nextPage="redirect:/loginUI";
 		}

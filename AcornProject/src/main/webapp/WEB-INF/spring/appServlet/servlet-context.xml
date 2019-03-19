@@ -20,7 +20,8 @@
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
 	
 	<!-- 단순 화면 변환 -->
-	<mvc:view-controller path="/LoginUI" view-name="loginForm"/>
+	<mvc:view-controller path="/loginUI" view-name="loginForm"/>
+	<mvc:view-controller path="/main" view-name="main"/>
 
 	<mvc:view-resolvers>
 		<mvc:bean-name>

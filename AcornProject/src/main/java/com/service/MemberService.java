@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dao.MemberDAO;
 import com.dto.ChoolCheckDTO;
 import com.dto.MemberDTO;
-
+@Service
 public class MemberService {
 	@Autowired
 	MemberDAO dao;
