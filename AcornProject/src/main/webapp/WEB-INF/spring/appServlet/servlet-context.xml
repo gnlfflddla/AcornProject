@@ -22,7 +22,8 @@
 	<!-- 단순 화면 변환 -->
 	<mvc:view-controller path="/loginUI" view-name="loginForm"/>
 	<mvc:view-controller path="/main" view-name="main"/>
-
+	<mvc:view-controller path="/writeui" view-name="../board/boardWrite"/>
+	
 	<mvc:view-resolvers>
 		<mvc:bean-name>
 			<bean

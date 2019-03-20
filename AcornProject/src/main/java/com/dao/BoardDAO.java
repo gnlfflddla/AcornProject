@@ -129,7 +129,6 @@ public class BoardDAO {
 	public void cmtReply(CommentDTO cdto) {
 		// TODO Auto-generated method stub
 		int repStep=makeCmtReply(cdto);
-		System.out.println(repStep);
 		
 		cdto.setRepStep(repStep);
 		template.insert("CommentMapper.cmtReply", cdto);

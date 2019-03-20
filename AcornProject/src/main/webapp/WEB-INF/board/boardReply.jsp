@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>답변글 쓰기 화면</h1>
-<form action="reply.do" method="get">
+<form action="reply" method="get">
 <input type="hidden" name="num" value="${replyui.num}">
 <input type="hidden" name="repRoot" value="${replyui.repRoot}">
 <input type="hidden" name="repStep" value="${replyui.repStep}">
@@ -21,6 +21,6 @@
 	내용 <textarea rows="10" name="content">${replyui.content}</textarea><br>
 	<input type="submit" value="답변달기">
 </form>
-<a href="list.do">목록 보기</a>
+<a href="boardList">목록 보기</a>
 </body>
 </html>

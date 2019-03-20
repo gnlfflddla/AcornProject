@@ -65,7 +65,7 @@
 		<textarea rows="10" name="content" style="height: 100;width: 300">${retrieve.content}</textarea><br>
 		<input type="submit" value="수정">
 	</form>
-	<a href="list">목록</a>
+	<a href="boardList">목록</a>
 	<%-- <c:if test="작성자 아이디와 로그인 아이디가 같을경우 활성화"> --%>
 	<a href="delete?num=${retrieve.num}">삭제</a>
 	<%-- 	</c:if> --%>

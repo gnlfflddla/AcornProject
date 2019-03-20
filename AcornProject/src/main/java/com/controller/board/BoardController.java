@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,6 +61,34 @@ public class BoardController {
 		cmtPDTO.setCurPage(Integer.parseInt(curPage));
 		cmtPDTO = bservice.cmtList(cmtPDTO, num);
 		return "boardRetrieveForm";
+	}
+	
+	@RequestMapping("/delete")
+	public String boardDelete(@RequestParam("num") String num,Model model) {
+		int n=bservice.boardDelete(num);
+		if(n==1) {
+			model.addAttribute("mesg", "게시글이 삭제되었습니다.");
+		}else {
+			model.addAttribute("mesg", "게시글 삭제가 실패되었습니다.");
+		}
+		return "redirect:/boardList";
+	}
+	
+	@RequestMapping("/replyui")
+	public String boardReplyUI(@RequestParam("num") String num,Model model) {
+		BoardDTO dto = bservice.boardReplyUI(num);
+		model.addAttribute("replyui", dto);
+		return "../board/boardReply";
+	}
+	@RequestMapping("/reply")
+	public String boardReply(BoardDTO dto) {
+		bservice.boardReply(dto);
+		return "redirect:/boardList";
+	}
+	
+	@RequestMapping("write")
+	public String boardWrite(BoardDTO dto) {
+		return "";
 	}
 	
 }
