@@ -17,7 +17,7 @@
 	조회수 : ${replyui.readcnt}<br>
 	
 	제목 : <input type="text" name="title" value="${replyui.title}"><br>
-	작성자 : <input type="text" name="author"><br>
+	작성자 : <input type="text" name="author" value="${login.userid}"><br>
 	내용 <textarea rows="10" name="content">${replyui.content}</textarea><br>
 	<input type="submit" value="답변달기">
 </form>

@@ -5,13 +5,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.CommentDTO;
 import com.dto.CommentPageDTO;
 import com.service.BoardService;
 
@@ -60,6 +59,7 @@ public class BoardController {
 		CommentPageDTO cmtPDTO = new CommentPageDTO();
 		cmtPDTO.setCurPage(Integer.parseInt(curPage));
 		cmtPDTO = bservice.cmtList(cmtPDTO, num);
+		model.addAttribute("cmtPDTO", cmtPDTO);
 		return "boardRetrieveForm";
 	}
 	
@@ -86,9 +86,39 @@ public class BoardController {
 		return "redirect:/boardList";
 	}
 	
-	@RequestMapping("write")
+	@RequestMapping("/m/write")
 	public String boardWrite(BoardDTO dto) {
-		return "";
+		bservice.boardWrite(dto);
+		return "redirect:/boardList";
+	}
+	
+	@RequestMapping("/update")
+	public String boardUpdate(BoardDTO dto) {
+		bservice.boardUpdate(dto);
+		return "redirect:/retrieve?num="+dto.getNum();
+	}
+	
+	@RequestMapping("/cwrite")
+	public String commentWrite(CommentDTO dto) {
+		bservice.cmtWrite(dto);
+		return "redirect:/retrieve?num="+dto.getComment_boardnum();
+	}
+	@RequestMapping("/ccwrite")
+	public String commentCWrite(CommentDTO dto) {
+		bservice.cmtReply(dto);
+		return "redirect:/retrieve?num="+dto.getComment_boardnum();
+	}
+
+	@RequestMapping("/delccmt")
+	public String commentDelete(@RequestParam("num") String num,@RequestParam("comment_boardnum") String comment_boardnum) {
+		bservice.cmtDelete(num);
+		return "redirect:/retrieve?num="+comment_boardnum;
+	}
+	
+	@RequestMapping("/upcmt")
+	public String commentUpdate(CommentDTO dto) {
+		bservice.cmtUpdate(dto);
+		return "redirect:/retrieve?num="+dto.getComment_boardnum();
 	}
 	
 }

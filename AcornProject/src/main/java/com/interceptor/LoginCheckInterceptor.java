@@ -14,7 +14,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		if(session.getAttribute("login")==null) {
-			response.sendRedirect("../LoginUI"); //m을 붙여서 왔기때문에 경로에서 한번 올라가야 한다
+			response.sendRedirect("../loginUI"); //m을 붙여서 왔기때문에 경로에서 한번 올라가야 한다
 			return false;
 		}
 		return true;

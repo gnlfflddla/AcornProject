@@ -10,13 +10,13 @@
 	</select>
 	<insert id="cmtReply" parameterType="Comment">
 		insert into
-		board_comment(num,rootnum,author,content,repStep,repIndent,repRoot)
-		values(comment_seq.nextval,#{rootnum},#{author},#{content},#{repStep}+1,1,#{repRoot})
+		board_comment(num,comment_boardnum,comment_author,comment_content,repStep,repIndent,repRoot)
+		values(comment_seq.nextval,#{comment_boardnum},#{comment_author},#{comment_content},#{repStep}+1,1,#{repRoot})
 	</insert>
 	<insert id="cmtWrite" parameterType="Comment">
 		insert into
-		board_comment(num,rootnum,author,content,repStep,repIndent,repRoot)
-		values(comment_seq.nextval,#{rootnum},#{author},#{content},0,0,comment_seq.currval)
+		board_comment(num,comment_boardnum,comment_author,comment_content,repStep,repIndent,repRoot)
+		values(comment_seq.nextval,#{comment_boardnum},#{comment_author},#{comment_content},0,0,comment_seq.currval)
 	</insert>
 	<select id="TotalCmtCount" parameterType="String"
 		resultType="int">
@@ -24,32 +24,25 @@
 	</select>
 	<select id="cmtlist" parameterType="String" resultType="Comment">
 		select
-		num,rootnum,author,content,writeday,repStep,repIndent,repRoot
+		num,comment_boardnum,comment_author,comment_content,writeday,repStep,repIndent,repRoot
 		from
 		board_comment
-		where rootnum=#{num}
+		where comment_boardnum=#{num}
 		order by repRoot asc, repStep asc
 	</select>
-	<!-- 위는 총 게시글 수를 구하기 위한 spl, 아래는 특정 조건을 주었을때 총 페이지를 위한 sql -->
-
-	<!-- <insert id="boardReply" parameterType="Board"> insert into board(num,author,title,content,repRoot,repStep,repIndent) 
-		values(board_seq.nextval,#{author},#{title},#{content},#{repRoot},#{repStep}+1,#{repIndent}+1) 
-		</insert> <update id="makeReply" parameterType="Board"> update board set 
-		repStep=repStep+1 where repRoot=#{repRoot} and repStep>#{repStep} </update> 
-		<select id="boardReplyUI" parameterType="String" resultType="Board"> select 
-		num,author,title,content,writeday,readcnt,repRoot,repStep,repIndent,secret 
-		from board where num=#{_num} </select> <select id="boardRetrieve" parameterType="String" 
-		resultType="Board"> select num,author,title,content,writeday,readcnt,repRoot,repStep,repIndent,secret 
-		from board where num=#{_num} </select> <select id="boardlist" resultType="Board"> 
-		select num,title,author,content,writeday,readcnt,repRoot,repStep,repIndent,secret 
-		from board order by repRoot desc, repStep asc </select> <update id="boardCnt" 
-		parameterType="String"> update board set readcnt = readcnt+1 where num=#{_num} 
-		</update> <update id="boardUpdate" parameterType="Board"> update board set 
-		title=#{title}, author=#{author}, content=#{content} where num=#{num} </update> 
-		<delete id="boardDelete" parameterType="String"> delete from board where 
-		num=#{_num} </delete> <select id="boardSearch" parameterType="Board" resultType="Board"> 
-		select num,title,author,content,writeday,readcnt,repRoot,repStep,repIndent,secret 
-		from board <where> <if test="title!=null"> title like '%'|| #{title} ||'%' 
-		</if> <if test="author!=null"> author like '%'|| #{author} ||'%' </if> </where> 
-		order by repRoot desc, repStep asc </select> -->
+	<delete id="cmtDelete" parameterType="String">
+		delete from board_comment
+		where 
+		num=#{_num} or reproot=#{_num}
+	</delete>
+	<delete id="cmtBDelete" parameterType="String">
+		delete from board_comment
+		where 
+		comment_boardnum=#{_num}
+	</delete>
+	<update id="cmtUpdate" parameterType="Comment">
+		update board_comment 
+		set comment_content=#{comment_content}
+		where num=#{num}
+	</update>
 </mapper>

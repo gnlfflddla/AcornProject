@@ -1,6 +1,5 @@
 package com.dto;
 
-import org.apache.ibatis.type.Alias;
 
 public class BoardDTO {
 	private int num;

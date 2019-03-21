@@ -65,7 +65,7 @@
 	</update>
 	<delete id="boardDelete" parameterType="String">
 		delete from board where
-		num=#{_num}
+		num=#{_num} or reproot=#{_num}
 	</delete>
 	<select id="boardSearch" parameterType="Board"
 		resultType="Board">

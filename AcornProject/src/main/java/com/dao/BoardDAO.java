@@ -73,7 +73,7 @@ public class BoardDAO {
 	public int boardDelete(String _num) {
 		// TODO Auto-generated method stub
 		int result = template.delete("BoardMapper.boardDelete", _num);
-
+		template.delete("CommentMapper.cmtBDelete", _num);
 		return result;
 	}
 
@@ -133,9 +133,21 @@ public class BoardDAO {
 		cdto.setRepStep(repStep);
 		template.insert("CommentMapper.cmtReply", cdto);
 	}
+	
+	public void cmtDelete(String num) {
+		// TODO Auto-generated method stub
+		template.delete("CommentMapper.cmtDelete", num);
+	}
 
 	private int makeCmtReply(CommentDTO cdto) {
 		// TODO Auto-generated method stub
 		return template.selectOne("CommentMapper.makeCmtReply", cdto);
 	}
+
+	public void cmtUpdate(CommentDTO dto) {
+		// TODO Auto-generated method stub
+		template.update("CommentMapper.cmtUpdate", dto);
+	}
+
+
 }

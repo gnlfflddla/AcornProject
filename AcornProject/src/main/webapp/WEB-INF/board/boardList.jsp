@@ -55,7 +55,7 @@
 		</c:choose>
 	</c:forEach>
 	<br>
-	<a href="writeui">글쓰기</a>
+	<a href="m/writeui">글쓰기</a>
 
 </body>
 </html>
