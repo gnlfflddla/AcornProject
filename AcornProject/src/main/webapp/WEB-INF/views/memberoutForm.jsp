@@ -1,5 +1,7 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <jsp:include page="../css/form.jsp"/>
 <!DOCTYPE html>
 <html>
@@ -8,7 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1><a href="main" style="text-decoration:none; color:black;">로그인 화면입니다.</a></h1>
-<jsp:include page="../member/loginForm.jsp"/>
+<h1>회원탈퇴가 완료되었습니다.</h1>
+<div class="butt">
+<a href="main"><button>메인으로 돌아가기</button></a>
+</div>
 </body>
 </html>

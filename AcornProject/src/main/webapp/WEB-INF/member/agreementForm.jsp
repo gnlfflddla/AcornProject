@@ -3,6 +3,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">  
 $(document).ready(function(){
+	
 	//전체 선택
 	$("#allselect").on("click",function(){
 		var result=this.checked;
@@ -33,7 +34,7 @@ $(document).ready(function(){
 });
 </script>
 <br>
-<form action="AgreementServlet" method="post">
+<form action="agreement" method="post">
 <br>
 <b>전체 선택</b><input type="checkbox" id="allselect">
 <br>

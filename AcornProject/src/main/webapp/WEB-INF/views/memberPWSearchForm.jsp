@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1><a href="main" style="text-decoration:none; color:black;">로그인 화면입니다.</a></h1>
-<jsp:include page="../member/loginForm.jsp"/>
+<h1>비밀번호 찾기 화면입니다.</h1>
+<jsp:include page="../member/memberPWSearchForm.jsp"></jsp:include>
 </body>
 </html>
