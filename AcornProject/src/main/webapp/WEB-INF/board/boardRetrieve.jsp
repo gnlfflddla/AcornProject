@@ -118,10 +118,10 @@
 						<div>
 							<a href="#" class="ccmt" id="${comment.num}">[답변]</a><br>
 							<!-- 부모댓글 번호확인 -->
-							<%-- <c:if test="작성자 아이디와 로그인 아이디가 같을경우 활성화"> --%>
+							<c:if test="${login.userid eq retrieve.author}">
 							<a href="#" class="upcmt" id="${comment.num}">[수정]</a> <br>
 							<a href="#" class="delccmt" id="${comment.num}">[삭제]</a> <br>
-							<%-- 	</c:if> --%>
+							</c:if>
 						</div>
 					</td>
 				</tr>
