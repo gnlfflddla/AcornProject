@@ -1,3 +1,4 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../css/form.jsp"/>
@@ -8,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1><a href="main" style="text-decoration:none; color:black;">로그인 화면입니다.</a></h1>
-<jsp:include page="../member/loginForm.jsp"/>
+<h1>회원가입 화면입니다.</h1>
+<jsp:include page="../member/memberForm.jsp"/>
 </body>
 </html>

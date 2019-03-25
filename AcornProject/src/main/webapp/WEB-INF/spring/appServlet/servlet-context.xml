@@ -20,7 +20,17 @@
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
 	
 	<!-- 단순 화면 변환 -->
+	<!-- ㅡmember 관련 -->
 	<mvc:view-controller path="/loginUI" view-name="loginForm"/>
+	<mvc:view-controller path="/agreementUI" view-name="agreementForm"/>
+	<mvc:view-controller path="/memberUI" view-name="memberForm"/>
+	<mvc:view-controller path="/memberIdSearchUI" view-name="memberIdSearchForm"/>
+	<mvc:view-controller path="/memberPWSearchUI" view-name="memberPWSearchForm"/>
+	<mvc:view-controller path="/myPageUI" view-name="myPageForm"/>
+	<mvc:view-controller path="/withdrawalUI" view-name="withdrawalForm"/>
+	<mvc:view-controller path="/memberUpdateUI" view-name="memberUpdateFrom" />
+	<!-- 끝 -->
+	
 	<mvc:view-controller path="/main" view-name="main"/>
 	<mvc:view-controller path="/m/writeui" view-name="../board/boardWrite"/>
 	<mvc:view-controller path="/" view-name="redirect:/main"/>
@@ -44,6 +54,22 @@
 	<context:component-scan base-package="com.*" />
 	
 
+	<!-- SET default mail properties -->
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com" />
+		<property name="port" value="587" />
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="username" value="swih0910" />
+		<property name="password" value="americano1324" />
+
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
 
 	
 

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<jsp:include page="../css/Form.jsp"/>
 
-<c:set var="mesg" value="${mesg}"/>
+
+<c:set var="mesg" value="${mesg}" scope="session"/>
 <c:if test="${empty mesg==false}">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -19,40 +19,33 @@
     
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	
-	var count=0;
-	
-	$("#sub").on("click",function(){
-		count++;
-		console.log(count);
-		if(count==5){
-			alert("본인인증");
-		}
-	});
-		
-	
-	
-	$("form").on("submit",function(){
-		
-		
-		
-		var userid=$("#userid").val();
-		var passwd=$("#passwd").val();
-		
-		
-		
-		if(userid==0){
-			alert("아이디를 입력해주세요.");
-			event.preventDefault();
-		}else if(passwd==0){
-			alert("비밀번호를 입력해주세요.");
-			event.preventDefault();
-		}
-	});
-	
-});
+	$(document).ready(function() {
 
+		/* var count = 0;
+
+		$("#sub").on("click", function() {
+			count++;
+			console.log(count);
+			if (count == 5) {
+				alert("본인인증");
+			}
+		}); */
+
+		$("form").on("submit", function() {
+
+			var userid = $("#userid").val();
+			var passwd = $("#passwd").val();
+
+			if (userid == 0) {
+				alert("아이디를 입력해주세요.");
+				event.preventDefault();
+			} else if (passwd == 0) {
+				alert("비밀번호를 입력해주세요.");
+				event.preventDefault();
+			}
+		});
+
+	});
 </script>
 
 <form action="login" method="post">
@@ -70,6 +63,5 @@ $(document).ready(function(){
 <input type="submit" value="로그인" id="sub">
 </form>
 <div class="butt">
-<a href="idSearch.jsp"><button>아이디 찾기</button></a>
-<a href="MemberPWSearchUIServlet"><button>비밀번호 찾기</button></a><br>
+<jsp:include page="../common/search.jsp"/>
 </div>
