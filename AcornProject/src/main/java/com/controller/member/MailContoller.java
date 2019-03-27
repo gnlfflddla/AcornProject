@@ -63,7 +63,7 @@ public class MailContoller {
 
 
 	@RequestMapping("/authenication_number")
-	public @ResponseBody String authenication_number(@RequestBody final Map<String, String> map) {
+	public @ResponseBody String authenication_number(@RequestBody final Map<String, String> map,HttpSession session) {
 
 		char[] authenication_num2 = new char[10];
 		for (int i = 0; i < 10; i++) {
@@ -71,7 +71,7 @@ public class MailContoller {
 		}
 
 		String authenication_num = new String(authenication_num2);
-
+		session.setAttribute("authenication_num",authenication_num);
 		String mailTo = map.get("email");
 		String text = "인증번호는 [" + authenication_num + "] 입니다.";
 
