@@ -9,6 +9,8 @@
 </head>
 <body>
 <h1>아이디 찾기 - 메일전송 확인.</h1>
+<jsp:include page="../common/top.jsp" flush="true"/> 
+<jsp:include page="../common/logo.jsp" flush="true"/> 
 <jsp:include page="../mail/completedForm_id.jsp"/>
 
 </body>

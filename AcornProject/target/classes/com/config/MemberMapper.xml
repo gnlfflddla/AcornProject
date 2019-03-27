@@ -4,68 +4,75 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
 
-   <insert id="memberAdd" parameterType="MemberDTO">
-	insert into member (userid,passwd,username,birthday,addr,phone,email,gradeno,reception)
-	values(#{userid},#{passwd},#{username},#{birthday},replace(#{addr},',',''),replace(#{phone},',',''),#{email},#{gradeno},#{reception})
-   </insert>
+	<insert id="memberAdd" parameterType="MemberDTO">
+		insert into member
+		(userid,passwd,username,birthday,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception)
+		values(#{userid},#{passwd},#{username},#{birthday},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2},#{gradeno},#{reception})
+	</insert>
 
-	<select id="login" parameterType="hashmap" resultType="MemberDTO">
-	<!-- 휴대전화 - 삽입 substr? concat? -->
-	 select userid,passwd,username,
-	 to_date(birthday,'yyyy-mm-dd')as birthday,addr,
-	 substr(phone, 1, 3) || '-' ||substr(phone,4,(length(phone)-7))||'-'||substr(phone,-4) as phone,
-	 email,gradeno,reception
-     from member
-     where userid = #{userid} and passwd = #{passwd}
+	<select id="login" parameterType="hashmap"
+		resultType="MemberDTO">
+		<!-- 휴대전화 - 삽입 substr? concat? -->
+		select userid,passwd,username,birthday,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception
+		from member
+		where userid = #{userid} and passwd = #{passwd}
 	</select>
-	
-	<select id="idSearch" parameterType="MemberDTO" resultType="hashmap" >
-	select rpad(substr(userid,0,2),length(userid),'*') as userid1, userid
-	from member
-	where username=#{username} and phone=replace(#{phone},',','') and email=#{email}
+
+	<select id="idSearch" parameterType="MemberDTO"
+		resultType="hashmap">
+		select rpad(substr(userid,0,2),length(userid),'*') as userid1, userid
+		from member
+		where username=#{username} and phone1=#{phone1} and phone2=#{phone2} and phone3=#{phone3} and
+		email1=#{email1} and email2=#{email2}
 	</select>
-	
+
 	<select id="idCheck" parameterType="string" resultType="int">
-	select count(*)
-	from member
-	where userid=#{userid}
+		select count(*)
+		from member
+		where userid=#{userid}
 	</select>
-	
+
 	<update id="memberupdate" parameterType="MemberDTO">
-	 update member
-	 set username=#{username},
-	 passwd=#{passwd},
-	 birthday = #{birthday},
-     addr =replace(#{addr},',',''),
-     phone =replace(#{phone},',',''),
-     email = #{email},
-     gradeno=#{gradeno},
-     reception=#{reception}
-     where userid = #{userid}
+		update member
+		set username=#{username},
+		passwd=#{passwd},
+		birthday = #{birthday},
+		addr1 =#{addr1},
+		addr2 =#{addr2},
+		phone1 =#{phone1},
+		phone2 =#{phone2},
+		phone3 =#{phone3},
+		email1 = #{email1},
+		email2 = #{email2},
+		gradeno=#{gradeno},
+		reception=#{reception}
+		where userid = #{userid}
 	</update>
-	
-	<delete id="withdrawal" parameterType="hashmap" >
-	delete 
-	from member
-	where userid=#{userid} and passwd=#{passwd}
+
+	<delete id="withdrawal" parameterType="hashmap">
+		delete
+		from member
+		where userid=#{userid} and passwd=#{passwd}
 	</delete>
-	
-	<select id="pwSearch_phone" parameterType="hashmap" resultType="int">
-	select count(*)
-	from member
-	where userid=#{userid} and username=#{username} 
+
+	<select id="pwSearch_phone" parameterType="hashmap"
+		resultType="int">
+		select count(*)
+		from member
+		where userid=#{userid} and username=#{username}
 	</select>
-	
-	<select id="pwSearch_email" parameterType="hashmap" resultType="int">
-	select count(*)
-	from member
-	where userid=#{userid} and username=#{username} and email=#{email}
+
+	<select id="pwSearch_email" parameterType="hashmap"
+		resultType="int">
+		select count(*)
+		from member
+		where userid=#{userid} and username=#{username} and email1=#{email1} and email2=#{email2}
 	</select>
-	
-	
+
+
 	<update id="passwdUpdate" parameterType="hashmap">
-	update member
-	set passwd=#{passwd}
-	where userid=#{userid}
+		update member
+		set passwd=#{passwd}
+		where userid=#{userid}
 	</update>
 </mapper>

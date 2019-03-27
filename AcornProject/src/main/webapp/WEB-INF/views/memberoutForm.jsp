@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../common/top.jsp" flush="true"/> 
+<jsp:include page="../common/logo.jsp" flush="true"/> 
 <h1>회원탈퇴가 완료되었습니다.</h1>
 <div class="butt">
 <a href="main"><button>메인으로 돌아가기</button></a>

@@ -21,6 +21,8 @@
 
 <h1>메인화면 입니다.</h1>
 <jsp:include page="../common/top.jsp" flush="true"/> 
-<jsp:include page="../common/search.jsp" flush="true"/>
+<jsp:include page="../common/logo.jsp" flush="true"/> 
+<jsp:include page="../common/menu.jsp" flush="true"/> 
+<jsp:include page="../product/productList.jsp" flush="true"/>
 </body>
 </html>

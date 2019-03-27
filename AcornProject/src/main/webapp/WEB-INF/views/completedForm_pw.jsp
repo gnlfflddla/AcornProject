@@ -9,6 +9,8 @@
 </head>
 <body>
 <h1>비밀번호 찾기 - 메일전송 확인.</h1>
+<jsp:include page="../common/top.jsp" flush="true"/> 
+<jsp:include page="../common/logo.jsp" flush="true"/> 
 <jsp:include page="../mail/completedForm_pw.jsp"/>
 
 </body>

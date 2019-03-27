@@ -112,7 +112,7 @@ public class MailContoller {
 		String userid = map.get("USERID"); // 전체 아이디
 		String userid1 = map.get("USERID1"); // 뒷자리 가린 아이디
 		String username = dto.getUsername();
-		String mailTo = dto.getEmail();
+		String mailTo = dto.getEmail1()+'@'+dto.getEmail2();
 		String text = username + "님의 아이디는" + userid + "입니다.";
 
 		MailDTO dto2 = new MailDTO();
