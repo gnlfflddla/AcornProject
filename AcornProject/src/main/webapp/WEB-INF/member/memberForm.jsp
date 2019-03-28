@@ -18,12 +18,11 @@
 		//이름 정규식
 		var nameJ = /^[가-힣a-zA-Z]+$/;
 		
-		//전화번호 정규식
-		
 		
 		//이메일주소 형식 체크 정규식
 		/* var regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; */
 
+		
 
 		//정보 모두 입력.
 		$("form").on("submit", function() {
@@ -31,9 +30,12 @@
 			var passwd = $("#passwd").val();
 			var username = $("#username").val();
 			var birthday = $("#birthday").val();
-			var post = $("#sample6_postcode").val();
-			var email = $("#email").val();
-
+			var post = $("#sample6_postcode").val()
+			var addr1=$("#sample6_address").val();
+			var addr2=$("sample6_detailAddress").val();
+			var email=$("#email1").val()+"@"+$("#email2").val();
+			
+			
 			if (($("#result").text()) != "사용가능한 아이디 입니다.") {
 
 				alert("아이디를 확인해주세요.");
@@ -50,6 +52,7 @@
 				$("#passwd").focus();
 				event.preventDefault();
 			} else if (nameJ.test(username) == false) {
+				console.log(username);
 				alert("이름은 한글 또는 영문자만 입력가능합니다.");
 				event.preventDefault();
 			} else if (birthday.length < 8) {
@@ -68,6 +71,7 @@
 			}
 		});
 
+		
 		//아이디 중복 확인
 		$("#check").on("click", function(event) {
 			
@@ -147,25 +151,28 @@
 
 		});
 
-		//이메일 선택(수정)
-		$("#emailSelect").on("change", function() {
-			var email = $("#email").val();
-			var email1 = $(this).val();
-
-			if (email.includes("@") == true) {
-				$("#email").val(email + email1);
-			}else {
-				$("#email").val(email + "@" + email1);
-			}
+		//이메일 선택
+		$("#emailselector").on("change", function() {
+			var email2 = $("#email2").val();
+			var emailSelect = $(this).val();
+			
+			$("#email2").val(emailSelect);
+			
 		});
 
 		//인증번호
-		$("#num").on("click", function() {
+		/* $("#num").on("click", function() {
 			$("#num_result").show();
 			event.preventDefault();
-		});
+		}); */
 
+		//이메일 발송
 		$("#num").on("click", function(event) {
+			
+			var email1 = $("#email1").val();
+			var email2 = $("#email2").val();
+			var email=email1+"@"+email2;
+			
 			$.ajax({
 				type : "post",
 				url : "authenication_number",
@@ -173,7 +180,7 @@
 				headers:{
 					"content-Type":"application/json"
 				},
-				data :JSON.stringify({email:$("#email").val()}),
+				data :JSON.stringify({email:email}),
 				success : function(responseData, status, xhr) {
 					$("#result4").text("이메일이 발송되었습니다.");
 					$("#result4").css("color", "green");
@@ -214,7 +221,7 @@
 
 	});
 </script>  
- 
+
 <form action="memberAdd" method="post">
 <table border='2'>
 <tr>
@@ -251,39 +258,42 @@
 
 <tr>
 <td>생년월일*</td>
-<td><input type="text" name="birthday" id="birthday" placeholder="ex)19880910" maxlength="8" required></td>
+<td>
+<input type="text" name="birthday" id="birthday" placeholder="ex)19880910" maxlength="8" required>
+</td>
 </tr>
 
 <tr>
 <td>주소*</td>
 <td>
-<input type="text" name="addr" id="sample6_postcode" placeholder="우편번호" required>
-<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" name="addr" id="sample6_address" placeholder="주소" required>
-<input type="text" name="addr" id="sample6_detailAddress" placeholder="상세주소" required>
-<input type="text" name="addr" id="sample6_extraAddress" placeholder="참고항목">
+<input type="text" name="post" id="sample6_postcode" placeholder="우편번호" readonly="true" required >
+<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" readonly="true"><br>
+<input type="text" name="addr1" id="sample6_address" placeholder="주소"  readonly="true" required>
+<input type="text" name="addr2" id="sample6_detailAddress" placeholder="상세주소"  required>
+<input type="text" name="addr2" id="sample6_extraAddress" placeholder="참고항목">
 </td>
 </tr>
 
 <tr>
 <td>휴대전화*</td>
 <td>
-<select name="phone" id="phoneSelect">
+<select name="phone1" id="phoneSelect">
 <option value="010">010</option>
 <option value="011">011</option>
 <option value="016">016</option>
 </select>
 -
-<input type="tel" name="phone" id="phone1" maxlength="4" required>-
-<input type="tel" name="phone" id="phone2" maxlength="4" required>
+<input type="tel" name="phone2" id="phone2" maxlength="4" required>-
+<input type="tel" name="phone3" id="phone3" maxlength="4" required>
 </td>
 </tr>
 
 <tr>
 <td>이메일*</td>
 <td>
-<input type="email" name="email" id="email" required>
-<select id="emailSelect">
+<input type="text" name="email1" id="email1" required>@
+<input type="text" name="email2" id="email2" required>
+<select id="emailselector">
 <option value="">--이메일선택--</option>
 <option value="naver.com">naver.com</option>
 <option value="daum.net">daum.net</option>

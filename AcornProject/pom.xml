@@ -195,6 +195,19 @@
 		<artifactId>spring-context-support</artifactId>
 		<version>${org.springframework-version}</version>
 	</dependency>	
+	<!-- The required Maven dependencies for the RestTemplate and the HttpClient 
+		library -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>4.1.1.RELEASE</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.3.5</version>
+	</dependency>
 
 
 	</dependencies>
