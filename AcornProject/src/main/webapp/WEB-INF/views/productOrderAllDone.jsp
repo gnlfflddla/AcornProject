@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 </head>
-<h1>장바구니</h1>
+<jsp:include page="../common/top.jsp" flush="true"/> 
+<jsp:include page="../common/logo.jsp" flush="true"/> 
+<h1>구매완료</h1>
 <body>
-<div align=right><jsp:include page="../common/top.jsp"></jsp:include></div>
 <jsp:include page="../order/productOrderAllDone.jsp" flush="true"/>
 </body>
 </html>

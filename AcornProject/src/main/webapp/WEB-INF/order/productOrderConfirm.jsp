@@ -88,7 +88,7 @@ $(document).ready(function() {
 							width="80"/></td> --%>
 							
 							<td class="td_default" width="80"><img
-							src="/shop/images/items/${dto.pImage}" border="0" align="center"
+							src="/images/${dto.pImage}" border="0" align="center"
 							width="80"/></td>
 							
 						<td class="td_default" width="300" style='padding-left: 30px'>${dto.pName}

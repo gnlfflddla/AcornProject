@@ -14,9 +14,9 @@
 		<a href="myPage">나의정보</a>&nbsp;&nbsp;
 		<a href="choolCheck">출석체크</a>&nbsp;&nbsp;
 		<c:if test="${login.gradeno eq 'admin'}">
-		<a href="productAdd">상품등록</a>
+		<a href="productAddForm">상품등록</a>&nbsp;&nbsp;
 		</c:if>
-		<a href="productCartList">장바구니</a>&nbsp;&nbsp;
+		<a href="ProductCartList">장바구니</a>&nbsp;&nbsp;
 	</c:when>
 
 	<c:otherwise>

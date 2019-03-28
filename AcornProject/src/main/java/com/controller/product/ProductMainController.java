@@ -30,21 +30,22 @@ public class ProductMainController {
 	@Autowired
 	ProductCartService Cservice;
 	
-	// 상품 메인화면 
-	@RequestMapping("/")
-	public String ProductList(Model m){
-		
-		List<ProductDTO> list = Pservice.ProductList();
-		List<ProductDTO> list2 = Pservice.ProductinfoList();
-		
-		m.addAttribute("productList", list);
-		m.addAttribute("productinfoList", list2);
-		
-		return "productMain";
-	}
+	/*
+	 * // 상품 메인화면
+	 * 
+	 * @RequestMapping("/productList") public String ProductList(Model m){
+	 * 
+	 * List<ProductDTO> list = Pservice.ProductList(); List<ProductDTO> list2 =
+	 * Pservice.ProductinfoList();
+	 * 
+	 * m.addAttribute("productList", list); m.addAttribute("productinfoList",
+	 * list2);
+	 * 
+	 * return "main"; }
+	 */
 	
 	//상품 등록 
-	@RequestMapping(value="/productAdd", method=RequestMethod.POST)
+	@RequestMapping(value="productAdd", method=RequestMethod.POST)
 	public String ProductAdd(ProductDTO dto){
 		CommonsMultipartFile theFile = dto.getTheFile();
 		String originalName = theFile.getOriginalFilename();
@@ -63,7 +64,8 @@ public class ProductMainController {
 			e.printStackTrace();
 		}	
 		int n= Pservice.ProductAdd(dto);
-		return "redirect:/";
+		//return "redirect:/";
+		return "redirect:/main";
 	}
 	
 	//상품 상세보기
@@ -92,7 +94,8 @@ public class ProductMainController {
 		
 		int result = Cservice.ProductCartAdd(dto);
 		
-		return "redirect:/"; // main화면
+		//return "redirect:/"; // main화면
+		return "redirect:/main";
 	}
 	
 	// 바로구매
