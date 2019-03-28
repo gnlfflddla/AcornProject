@@ -73,6 +73,7 @@ public class MailContoller {
 		System.out.println(map);
 		
 		String authenication_num = new String(authenication_num2);
+		session.setAttribute("authenication_num",authenication_num);
 		String mailTo = map.get("email");
 		String text = "인증번호는 [" +authenication_num + "] 입니다.";
 

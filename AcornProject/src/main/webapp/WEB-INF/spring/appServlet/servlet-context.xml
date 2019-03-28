@@ -34,7 +34,7 @@
 	<mvc:view-controller path="/main" view-name="main"/>
 	<mvc:view-controller path="/m/writeui" view-name="../board/boardWrite"/>
 	<mvc:view-controller path="/" view-name="redirect:/main"/>
-	
+	<mvc:view-controller path="productAddForm" view-name="productAddForm"/>
 	<mvc:view-resolvers>
 		<mvc:bean-name>
 			<bean
@@ -71,6 +71,13 @@
 		</property>
 	</bean>
 
-	
+		<!-- 파일 업로드 -->
+	<bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    <!-- one of the properties available; the maximum file size in bytes -->
+    <property name="maxUploadSize" value="-1"/>
+	<property name="defaultEncoding" value="UTF-8"/>
+	</bean>		
 
 </beans>

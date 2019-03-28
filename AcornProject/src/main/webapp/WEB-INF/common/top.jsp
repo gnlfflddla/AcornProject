@@ -13,9 +13,8 @@
 		<a href="logout" >로그아웃</a>&nbsp;&nbsp;
 		<a href="myPage">나의정보</a>&nbsp;&nbsp;
 		<a href="choolCheck">출석체크</a>&nbsp;&nbsp;
-		<c:if test="${login.userid eq 'admin'}">
-		<a href="">상품등록</a>
-		
+		<c:if test="${login.gradeno eq 'admin'}">
+		<a href="productAdd">상품등록</a>
 		</c:if>
 		<a href="productCartList">장바구니</a>&nbsp;&nbsp;
 	</c:when>

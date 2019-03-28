@@ -3,33 +3,37 @@ package com.dto;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 public class ProductDTO {
 
 	private String pCode;
 	private String pName;
 	private String pContent;
 	private String pCategory; 
-	private String pImage;
 	private ArrayList<String> pColor;
 	private ArrayList<String> pSize;
 	private int pPrice;
+	private String pImage;
+	private CommonsMultipartFile theFile;
 	
 	public ProductDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductDTO(String pCode, String pName, String pContent, String pCategory, String pImage,
-			ArrayList<String> pColor, ArrayList<String> pSize, int pPrice) {
+	public ProductDTO(String pCode, String pName, String pContent, String pCategory, ArrayList<String> pColor,
+			ArrayList<String> pSize, int pPrice, String pImage, CommonsMultipartFile theFile) {
 		super();
 		this.pCode = pCode;
 		this.pName = pName;
 		this.pContent = pContent;
 		this.pCategory = pCategory;
-		this.pImage = pImage;
 		this.pColor = pColor;
 		this.pSize = pSize;
 		this.pPrice = pPrice;
+		this.pImage = pImage;
+		this.theFile = theFile;
 	}
 
 	public String getpCode() {
@@ -64,14 +68,6 @@ public class ProductDTO {
 		this.pCategory = pCategory;
 	}
 
-	public String getpImage() {
-		return pImage;
-	}
-
-	public void setpImage(String pImage) {
-		this.pImage = pImage;
-	}
-
 	public ArrayList<String> getpColor() {
 		return pColor;
 	}
@@ -96,11 +92,29 @@ public class ProductDTO {
 		this.pPrice = pPrice;
 	}
 
+	public String getpImage() {
+		return pImage;
+	}
+
+	public void setpImage(String pImage) {
+		this.pImage = pImage;
+	}
+
+	public CommonsMultipartFile getTheFile() {
+		return theFile;
+	}
+
+	public void setTheFile(CommonsMultipartFile theFile) {
+		this.theFile = theFile;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductDTO [pCode=" + pCode + ", pName=" + pName + ", pContent=" + pContent + ", pCategory=" + pCategory
-				+ ", pImage=" + pImage + ", pColor=" + pColor + ", pSize=" + pSize + ", pPrice=" + pPrice + "]";
+				+ ", pColor=" + pColor + ", pSize=" + pSize + ", pPrice=" + pPrice + ", pImage=" + pImage + ", theFile="
+				+ theFile + "]";
 	}
+	
 	
 	
 	

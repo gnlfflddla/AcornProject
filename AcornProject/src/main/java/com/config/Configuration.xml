@@ -7,11 +7,17 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.dto.BoardDTO" alias="Board" />
 		<typeAlias type="com.dto.CommentDTO" alias="Comment" />
 		<typeAlias type="com.dto.MemberDTO" alias="MemberDTO" />
+		<typeAlias type="com.dto.ProductDTO" alias="ProductDTO" />
+		<typeAlias type="com.dto.ProductCartDTO" alias="ProductCartDTO" />
+		<typeAlias type="com.dto.ProductInfoDTO" alias="ProductInfoDTO" />
+		<typeAlias type="com.dto.ProductOrderDTO" alias="ProductOrderDTO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/config/MemberMapper.xml" />
 		<mapper resource="com/config/BoardMapper.xml" />
 		<mapper resource="com/config/CommentMapper.xml" />
+		<mapper resource="com/config/ProductMapper.xml" />
+		<mapper resource="com/config/ProductCartMapper.xml" />
 	</mappers>
 </configuration>
 
