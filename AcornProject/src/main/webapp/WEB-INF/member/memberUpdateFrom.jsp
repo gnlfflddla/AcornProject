@@ -84,25 +84,29 @@ $(document).ready(function(){
 			
 		 });
 		 
-		 //이메일 선택
-		 $("#emailSelect").on("change",function(){
-			 var email=$("#email").val();
-			 var email1=$(this).val();
-			
-			if(email.includes("@")==true){
-				$("#email").val(email+email1);
-			}else{
-				$("#email").val(email+"@"+email1);
-			}
-		 });
+		//이메일 선택
+			$("#emailselector").on("change", function() {
+				var email2 = $("#email2").val();
+				var emailSelect = $(this).val();
+				
+				$("#email2").val(emailSelect);
+				
+			});
 		 
 		//인증번호
 		 $("#num").on("click",function(){
 			$("#num_result").show(); 
 			event.preventDefault();
 		 });
-		 
-		 $("#num").on("click",function(event){
+		
+		
+		//이메일 발송 
+		 $("#num").on("click", function(event) {
+				
+				var email1 = $("#email1").val();
+				var email2 = $("#email2").val();
+				var email=email1+"@"+email2;
+				
 				$.ajax({
 					type : "post",
 					url : "authenication_number",
@@ -110,24 +114,23 @@ $(document).ready(function(){
 					headers:{
 						"content-Type":"application/json"
 					},
-					data :JSON.stringify({email:$("#email").val()}),
+					data :JSON.stringify({email:email}),
 					success : function(responseData, status, xhr) {
 						$("#result4").text("이메일이 발송되었습니다.");
-						$("#result4").css("color", "red");
+						$("#result4").css("color", "green");
 
 					},
 					error : function(xhr, status, error) {
 						alert("error");
-						
+
 					}
-					
+
 				});
-				
+
 				event.preventDefault();
 			});
-		 
-		 
-		 $("#check1").on("click",function(event){
+
+			$("#check1").on("click", function(event) {
 				$.ajax({
 					type : "post",
 					url : "certification",
@@ -137,16 +140,16 @@ $(document).ready(function(){
 					},
 					data :JSON.stringify({A_num:$("#A_num").val()}),
 					success : function(responseData, status, xhr) {
-					    $("#result5").text(responseData);
-					    $("#result5").css("color","red");
+						$("#result5").text(responseData);
+						$("#result5").css("color", "green");
 					},
 					error : function(xhr, status, error) {
 						alert("error");
-						
+
 					}
-					
+
 				});
-				
+
 				event.preventDefault();
 			});
 });
@@ -156,14 +159,14 @@ $(document).ready(function(){
 <tr>
 <td>아이디</td>
 <td>
-<input type="text" name="userid" id="userid" value="${login.getUserid()}" readonly="readonly" style="border:none">
+<input type="text" name="userid" id="userid" value="${login.getUserid()}" style="border:none" readonly>
 </td>
 </tr>
 
 <tr>
 <td>이름*</td>
 <td>
-<input type="text" name="username" id="username" value="${login.getUsername()}" readonly="readonly" style="border:none">
+<input type="text" name="username" id="username" value="${login.getUsername()}" style="border:none" readonly>
 </td>
 </tr>
 
@@ -192,33 +195,34 @@ $(document).ready(function(){
 <tr>
 <td>주소*</td>
 <td>
-<input type="text" name="addr" id="sample6_postcode" placeholder="우편번호" required>
+<input type="text" name="post" id="sample6_postcode" value="${login.getPost()}" placeholder="우편번호" required>
 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" name="addr" id="sample6_address" placeholder="주소" required>
-<input type="text" name="addr" id="sample6_detailAddress" placeholder="상세주소" required>
-<input type="text" name="addr" id="sample6_extraAddress" placeholder="참고항목">
+<input type="text" name="addr1" id="sample6_address" value="${login.getAddr1()}" placeholder="주소" required>
+<input type="text" name="addr2" id="sample6_detailAddress" value="${login.getAddr2()}" placeholder="상세주소" required>
+<input type="text" name="addr2" id="sample6_extraAddress" placeholder="참고항목">
 </td>
 </tr>
 
 <tr>
 <td>휴대전화*</td>
 <td>
-<select name="phone" id="phoneSelect">
+<select name="phone1" id="phoneSelect" value="${login.getPhone1()}">
 <option value="010">010</option>
 <option value="011">011</option>
 <option value="016">016</option>
 </select>
 -
-<input type="text" name="phone" id="phone1">-
-<input type="text" name="phone" id="phone2">
+<input type="text" name="phone2" id="phone2" value="${login.getPhone2()}">-
+<input type="text" name="phone3" id="phone3" value="${login.getPhone3()}">
 </td>
 </tr>
 
 <tr>
 <td>이메일*</td>
 <td>
-<input type="email" name="email" id="email" value="${login.getEmail()}">
-<select id="emailSelect">
+<input type="text" name="email1" id="email1" value="${login.getEmail1()}">@
+<input type="text" name="email2" id="email2" value="${login.getEmail2()}">
+<select id="emailselector">
 <option>--이메일선택--</option>
 <option value="naver.com">naver.com</option>
 <option value="daum.net">daum.net</option>
@@ -227,8 +231,8 @@ $(document).ready(function(){
 <br>
 <button id="num">인증번호</button>
 <span id="result4"></span>
-<div id="num_result" hidden="true">
-<input type="text" name="A_num" id="A_num">
+<div id="num_result">
+<input type="text" name="A_num" id="A_num" placeholder="인증번호" required>
 <button name="check1" id="check1">확인</button>
 <span id="result5"></span>
 <input type="hidden" name="gradeno" id="gradeno" value="${login.getGradeno()}">

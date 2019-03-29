@@ -50,8 +50,8 @@ public class MailContoller {
 
 				helper.setFrom("swih0910@naver.com");
 				helper.setTo(mailTo);
-				helper.setSubject("acorn 쇼핑몰 인증번호 발송");
-				helper.setText("인증번호:" + text, true);
+				helper.setSubject("acorn 쇼핑몰");
+				helper.setText(text, true);
 			}
 		};
 
@@ -69,17 +69,20 @@ public class MailContoller {
 		for (int i = 0; i < 10; i++) {
 			authenication_num2[i] = (char) (48 + (int) (Math.random() * 10));
 		}
-
+		
+		System.out.println(map);
+		
 		String authenication_num = new String(authenication_num2);
 		session.setAttribute("authenication_num",authenication_num);
 		String mailTo = map.get("email");
-		String text = "인증번호는 [" + authenication_num + "] 입니다.";
+		String text = "인증번호는 [" +authenication_num + "] 입니다.";
 
 		MailDTO dto = new MailDTO();
 		dto.setMailTo(mailTo);
 		dto.setText(text);
 
 		sendMail(dto);
+		session.setAttribute("authenication_num", authenication_num);
 
 		return "ok";
 	}
@@ -103,16 +106,16 @@ public class MailContoller {
 
 		return new ResponseEntity(mesg, responseHeaders, HttpStatus.CREATED);
 	}
+	
 
 	@RequestMapping("/memberIdSearch")
 	public String memberIdSearch(MemberDTO dto, HttpSession session) {
-
 		Map<String, String> map = service.idSearch(dto);
 
 		String userid = map.get("USERID"); // 전체 아이디
 		String userid1 = map.get("USERID1"); // 뒷자리 가린 아이디
 		String username = dto.getUsername();
-		String mailTo = dto.getEmail1()+'@'+dto.getEmail2();
+		String mailTo = dto.getEmail1()+"@"+dto.getEmail2();
 		String text = username + "님의 아이디는" + userid + "입니다.";
 
 		MailDTO dto2 = new MailDTO();
@@ -155,7 +158,7 @@ public class MailContoller {
 			MemberService service2 = new MemberService();
 			int n2 = service.passwdUpdate(map2);
 
-			String mailTo = map.get("email");
+			String mailTo = map.get("email1")+"@"+map.get("email2");
 			String text = "[" + map.get("username") + "] 님의 아이디[" + map.get("userid") + "]  의 임시비밀번호는 [" + passwd
 					+ "] 입니다.";
 
@@ -165,7 +168,7 @@ public class MailContoller {
 
 			sendMail(dto2);
 
-			session.setAttribute("mailTo", map.get("email"));
+			session.setAttribute("mailTo", mailTo);
 			session.setAttribute("username", map.get("username"));
 			session.setAttribute("userid", map.get("userid"));
 			session.setAttribute("passwd", passwd);

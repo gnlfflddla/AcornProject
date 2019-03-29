@@ -15,49 +15,14 @@ alert('${mesg}');
  <script type="text/javascript">   
 $(document).ready(function(){
 	
-		/* //휴대전화 정규식
-		var pj=/^01([0|1|6]?)?[\-\.]?([0-9]{3,4})?[\-\.]?([0-9]{4})$/;
+	//이메일 선택
+	$("#emailselector").on("change", function() {
+		var email2 = $("#email2").val();
+		var emailSelect = $(this).val();
 		
-	 $("form").on("submit",function(){
-		 var username=$("#username").val();
-		 var phone1=$("#phone1").val();
-		 var phone2=$("#phone2").val();
-		 var email=$("#email").val();
-		 
-		 if(username.length==0){
-				alert("이름을 입력해주세요.");
-				$("#userid").focus();
-				event.preventDefault();
-		 }else if(phone1.length==0 || phone2.length==0){
-				alert("휴대전화번호를 확인해주세요.");
-				$("#phone").focus();
-				event.preventDefault();
-		 }else if(email.length==0){
-				alert("이메일을 확인해주세요.");
-				$("#email").focus();
-				event.preventDefault();
-		}
-	 });
-	 
-	 $("#emailSelect").on("change",function(){
-		 var email=$("#email").val();
-		 var emailSelect=$(this).val();
+		$("#email2").val(emailSelect);
 		
-		if(email.includes("@")==true){
-			$("#email").val(email+emailSelect);
-		}else{
-			$("#email").val(email+"@"+emailSelect);
-		}
-	 });
-	 
-	 $("#passwd").blur("keyup",function(){
-			if(pj.test($("#passwd").val())){
-				$("#result2").text("");
-			}else{
-				$("#result2").text("숫자 or 문자로만 4~12자리 입력");
-				$("#result2").css("color","red");
-			}
-		}); */
+	});
 			
 });
 
@@ -67,27 +32,28 @@ $(document).ready(function(){
 <table border='2'>
 <tr>
 <td>이름</td>
-<td><input type="text" name="username" id="username"></td>
+<td><input type="text" name="username" id="username" required></td>
 </tr>
 <tr>
 <td>휴대전화</td>
 <td>
-<select name="phone" id="phoneSelect">
+<select name="phone1" id="phoneSelect" required>
 <option value="010">010</option>
 <option value="011">011</option>
 <option value="016">016</option>
 </select>
 -
-<input type="tel" name="phone" id="phone1">-
-<input type="tel" name="phone" id="phone2">
+<input type="text" name="phone2" id="phone2" required>-
+<input type="text" name="phone3" id="phone3" required>
 </td>
 </tr>
 
 <tr>
 <td>이메일</td>
 <td>
-<input type="email" name="email" id="email" >
-<select id="emailSelect">
+<input type="text" name="email1" id="email1" required>@
+<input type="text" name="email2" id="email2" required>
+<select id="emailselector">
 <option value="">--이메일선택--</option>
 <option value="naver.com">naver.com</option>
 <option value="daum.net">daum.net</option>
