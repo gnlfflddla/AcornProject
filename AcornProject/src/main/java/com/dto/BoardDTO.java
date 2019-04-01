@@ -3,6 +3,7 @@ package com.dto;
 
 public class BoardDTO {
 	private int num;
+	private String kind;
 	private String author;
 	private String title;
 	private String content;
@@ -16,10 +17,11 @@ public class BoardDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BoardDTO(int num, String author, String title, String content, int readcnt, String writeday, int repRoot,
-			int repStep, int repIndent, char secret) {
+	public BoardDTO(int num, String kind, String author, String title, String content, int readcnt, String writeday,
+			int repRoot, int repStep, int repIndent, char secret) {
 		super();
 		this.num = num;
+		this.kind = kind;
 		this.author = author;
 		this.title = title;
 		this.content = content;
@@ -35,6 +37,12 @@ public class BoardDTO {
 	}
 	public void setNum(int num) {
 		this.num = num;
+	}
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 	public String getAuthor() {
 		return author;
@@ -92,11 +100,10 @@ public class BoardDTO {
 	}
 	@Override
 	public String toString() {
-		return "BoardDTO [num=" + num + ", author=" + author + ", title=" + title + ", content=" + content
-				+ ", readcnt=" + readcnt + ", writeday=" + writeday + ", repRoot=" + repRoot + ", repStep=" + repStep
-				+ ", repIndent=" + repIndent + ", secret=" + secret + "]";
+		return "BoardDTO [num=" + num + ", kind=" + kind + ", author=" + author + ", title=" + title + ", content="
+				+ content + ", readcnt=" + readcnt + ", writeday=" + writeday + ", repRoot=" + repRoot + ", repStep="
+				+ repStep + ", repIndent=" + repIndent + ", secret=" + secret + "]";
 	}
-	
 	
 	
 }

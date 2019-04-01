@@ -20,8 +20,8 @@
 	</select>
 	<insert id="boardReply" parameterType="Board">
 		insert into
-		board(num,author,title,content,repRoot,repStep,repIndent)
-		values(board_seq.nextval,#{author},#{title},#{content},#{repRoot},#{repStep}+1,#{repIndent}+1)
+		board(num,kind,author,title,content,repRoot,repStep,repIndent)
+		values(board_seq.nextval,#{kind},#{author},#{title},#{content},#{repRoot},#{repStep}+1,#{repIndent}+1)
 	</insert>
 	<update id="makeReply" parameterType="Board">
 		update board set
@@ -30,28 +30,25 @@
 	</update>
 	<select id="boardReplyUI" parameterType="String"
 		resultType="Board">
-		select
-		num,author,title,content,writeday,readcnt,repRoot,repStep,repIndent,secret
+		select *
 		from board
 		where num=#{_num}
 	</select>
 	<select id="boardRetrieve" parameterType="String"
 		resultType="Board">
-		select
-		num,author,title,content,writeday,readcnt,repRoot,repStep,repIndent,secret
+		select *
 		from board
 		where num=#{num}
 	</select>
 	<select id="boardlist" resultType="Board">
-		select
-		num,title,author,content,writeday,readcnt,repRoot,repStep,repIndent,secret
+		select *
 		from board
 		order by repRoot desc, repStep asc
 	</select>
 	<insert id="boardWrite" parameterType="Board">
 		insert into
-		board(num,author,title,content,repRoot,repStep,repIndent,secret)
-		values(board_seq.nextval,#{author},#{title},#{content},board_seq.currval,0,0,#{secret})
+		board(num,kind,author,title,content,repRoot,repStep,repIndent,secret)
+		values(board_seq.nextval,#{kind},#{author},#{title},#{content},board_seq.currval,0,0,#{secret})
 	</insert>
 	<update id="boardCnt" parameterType="String">
 		update board set readcnt =
@@ -69,7 +66,7 @@
 	</delete>
 	<select id="boardSearch" parameterType="Board"
 		resultType="Board">
-		select num,title,author,content,writeday,readcnt,repRoot,repStep,repIndent,secret
+		select *
 		from board
 		<where>
 			<if test="title!=null">
@@ -77,6 +74,9 @@
 			</if>
 			<if test="author!=null">
 				author like '%'|| #{author} ||'%'
+			</if>
+			<if test="kind!=null">
+				and kind like '%'|| #{kind} ||'%'
 			</if>
 		</where>
 		order by repRoot desc, repStep asc

@@ -44,6 +44,24 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="myDataSource" />
 	</bean>
-
+	
+	
+	 <!-- Google 소셜 로그인 연결 설정 -->
+    <bean id="googleOAuth2Template"
+        class="org.springframework.social.google.connect.GoogleOAuth2Template">
+        <constructor-arg
+            value="Your Client Id" />
+        <constructor-arg value="Your Client Secret" />
+    </bean>
+ 
+ 
+    <bean id="googleOAuth2Parameters"
+        class="org.springframework.social.oauth2.OAuth2Parameters">
+        <property name="scope"
+            value="profile"></property>
+        <property name="redirectUri"
+            value="http://localhost:8090/memberAdd" />
+    </bean>
+ 
 
 </beans>

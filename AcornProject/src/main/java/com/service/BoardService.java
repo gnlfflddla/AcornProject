@@ -33,6 +33,7 @@ public class BoardService {
 
 	public int boardWrite(BoardDTO dto) {
 		int result = 0;
+		System.out.println(dto);
 		result = dao.boardWrite(dto);
 		return result;
 	}

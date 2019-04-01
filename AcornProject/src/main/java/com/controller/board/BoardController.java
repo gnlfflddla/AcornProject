@@ -28,15 +28,18 @@ public class BoardController {
 		return "boardForm";
 	}
 	@RequestMapping("/search")
-	public String boardSearch(String searchName,String searchValue,@RequestParam(value="curPage",required=false, defaultValue="1")String curPage,HttpSession session,Model model) {
+	public String boardSearch(String searchName,String searchValue,String kind,@RequestParam(value="curPage",required=false, defaultValue="1")String curPage,HttpSession session,Model model) {
 		if(searchName!=null) {
 			session.setAttribute("searchName", searchName);
 			session.setAttribute("searchValue", searchValue);
 		}
-		
+		if(kind!=null) {
+			session.setAttribute("kind", kind);
+		}
 		BoardPageDTO pDTO = new BoardPageDTO();
 		pDTO.setCurPage(Integer.parseInt(curPage));
 		BoardDTO dto = new BoardDTO();
+		dto.setKind((String)session.getAttribute("kind"));
 		if(session.getAttribute("searchName").equals("title")) {
 			dto.setTitle((String)session.getAttribute("searchValue"));
 			

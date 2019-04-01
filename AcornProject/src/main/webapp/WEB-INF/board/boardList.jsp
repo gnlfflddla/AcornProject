@@ -12,8 +12,13 @@
 	
 	<table border="1" class="type10">
 		<tr>
-			<td colspan="5">
+			<td colspan="6">
 				<form action="search">
+					<select name="kind" size="1">
+						<option value="1">공지사항</option>
+						<option value="2">이벤트</option>
+						<option value="3">QnA</option>
+					</select>
 					<select name="searchName" size="1">
 						<option value="author">작성자</option>
 						<option value="title">글제목</option>
@@ -24,6 +29,7 @@
 		</tr>
 		<tr>
 			<td>번호</td>
+			<td>분류</td>
 			<td>제목</td>
 			<td>작성자</td>
 			<td>날짜</td>
@@ -32,6 +38,11 @@
 		<c:forEach items="${boardList.list}" var="dto">
 			<tr>
 				<td>${dto.num}</td>
+				<td>
+				<c:if test="${dto.kind eq '1'}">공지사항</c:if>
+				<c:if test="${dto.kind eq '2'}">이벤트</c:if>
+				<c:if test="${dto.kind eq '3'}">QnA</c:if>
+				</td>
 				<td>
 				<c:forEach begin="1" end="${dto.repIndent}">
 				ㄴ
