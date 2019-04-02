@@ -1,13 +1,17 @@
 package com.controller.board;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
 import com.dto.CommentDTO;
@@ -19,13 +23,21 @@ public class BoardController {
 	@Autowired
 	BoardService bservice;
 
-	@RequestMapping("/boardList")
+	@RequestMapping(value="/boardList",method=RequestMethod.GET)
 	public String boardList(@RequestParam(value="curPage",required=false,defaultValue="1") String curPage,Model model) {
 		BoardPageDTO pDTO = new BoardPageDTO();
 		pDTO.setCurPage(Integer.parseInt(curPage));
 		pDTO = bservice.boardList(pDTO);
 		model.addAttribute("boardList", pDTO);
 		return "boardForm";
+	}
+	@RequestMapping(value="/list",method=RequestMethod.GET)
+	@CrossOrigin
+	public @ResponseBody BoardPageDTO boardList2(@RequestParam(value="curPage",required=false,defaultValue="1") String curPage,Model model) {
+		BoardPageDTO pDTO = new BoardPageDTO();
+		pDTO.setCurPage(Integer.parseInt(curPage));
+		pDTO = bservice.boardList(pDTO);
+		return bservice.boardList(pDTO);
 	}
 	@RequestMapping("/search")
 	public String boardSearch(String searchName,String searchValue,String kind,@RequestParam(value="curPage",required=false, defaultValue="1")String curPage,HttpSession session,Model model) {
