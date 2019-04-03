@@ -62,4 +62,9 @@ public class MemberDAO {
 		int n=session.update("MemberMapper.passwdUpdate",map2);
 		return n;
 	}
+	
+	public int Naverlogin(String id) {
+		int n=session.selectOne("MemberMapper.naverlogin",id);
+		return n;
+	}
 }

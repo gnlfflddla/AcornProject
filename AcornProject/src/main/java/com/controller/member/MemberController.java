@@ -37,6 +37,7 @@ public class MemberController {
 	
 	@RequestMapping("/memberAdd")
 	public String memberAdd(MemberDTO dto,HttpSession session) {
+		
 		int n=service.memberAdd(dto);
 		if(n!=0) {
 			session.setAttribute("mesg", "회원가입 성공");

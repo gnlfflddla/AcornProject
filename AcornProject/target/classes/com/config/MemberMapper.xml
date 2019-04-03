@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
    <insert id="memberAdd" parameterType="MemberDTO">
 	insert into member (userid,passwd,username,birthday,post,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception)
-	values(#{userid},#{passwd},#{username},#{birthday},#{post},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2},#{gradeno},#{reception})
+	values(#{userid},#{passwd, jdbcType=NULL},#{username},#{birthday},#{post},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2},#{gradeno},#{reception})
    </insert>
-
+   
 	<select id="login" parameterType="hashmap" resultType="MemberDTO">
 	<!-- 휴대전화 - 삽입 substr? concat? -->
 	 select userid,passwd,username,
@@ -73,4 +73,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	set passwd=#{passwd}
 	where userid=#{userid}
 	</update>
+	
+	<select id="naverlogin" parameterType="string" resultType="int">
+	select count(*)
+	from member
+	where userid=#{userid}
+	</select>
 </mapper>

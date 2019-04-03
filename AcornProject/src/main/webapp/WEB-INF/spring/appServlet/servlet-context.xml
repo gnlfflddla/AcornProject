@@ -21,7 +21,6 @@
 	
 	<!-- 단순 화면 변환 -->
 	<!-- ㅡmember 관련 -->
-	<mvc:view-controller path="/loginUI" view-name="loginForm"/>
 	<mvc:view-controller path="/agreementUI" view-name="agreementForm"/>
 	<mvc:view-controller path="/memberUI" view-name="memberForm"/>
 	<mvc:view-controller path="/memberIdSearchUI" view-name="memberIdSearchForm"/>
@@ -51,8 +50,8 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<context:component-scan base-package="com.*" />
-	
+	<context:component-scan base-package="com.*"/>
+	<bean id="naverLoginBO" class="com.oauth.NaverLoginBO" />
 
 	<!-- SET default mail properties -->
 	<bean id="mailSender"
