@@ -104,7 +104,7 @@ $(document).ready(function() {
 	$("#AddiBtn").on("click",function(event){
 		event.preventDefault();
 		if(j<2){
-		$("#image").after("<tr class='images'><td>상품 이미지 : <input type='file' name='pImage'></td></tr>");
+		$("#image").after("<tr class='images'><td>상품 이미지 : <input type='file' name='files'></td></tr>");
 		j++;
 		}else{
 			alert("이미지는 3개만 추가 가능합니다.");
@@ -133,7 +133,7 @@ $(document).ready(function() {
 				<td>상품 코드 : <input type="text" name="pCode"></td>
 			</tr>
 			 <tr id="image">
-				<td>상품 이미지 : <input type="file" name="theFile"> <input
+				<td>상품 이미지 : <input type="file" name="files"> <input
 					type="button" value="이미지 추가" id="AddiBtn"> <input
 					type="button" value="이미지 삭제" id="DeliBtn">
 			 </td>

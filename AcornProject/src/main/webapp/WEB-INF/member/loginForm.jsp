@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
-
 <c:set var="mesg" value="${mesg}" scope="session"/>
 <c:if test="${empty mesg==false}">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,9 +15,18 @@
 </script>
  </c:if>
 <c:remove var="mesg" scope="session"></c:remove>
-    
+
+<c:set var="mesg2" value="${loginMesg}" scope="session"/>
+<c:if test="${empty mesg2==false}">
+	<script>
+		alert("${mesg2}");
+	</script>
+ </c:if>
+<c:remove var="mesg2"/>
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 
 		/* var count = 0;
@@ -47,7 +55,6 @@
 
 	});
 </script>
-
 <form action="login" method="post">
 <table>
 <tr>

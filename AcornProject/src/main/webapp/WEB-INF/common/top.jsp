@@ -17,6 +17,7 @@
 		<a href="productAddForm">상품등록</a>&nbsp;&nbsp;
 		</c:if>
 		<a href="ProductCartList">장바구니</a>&nbsp;&nbsp;
+		<a href="ProductOrderList">구매목록</a>&nbsp;&nbsp;
 	</c:when>
 
 	<c:otherwise>

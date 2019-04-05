@@ -15,13 +15,17 @@
 				$("#sample4_postcode").val($("#mpost").val());
 				$("#sample4_roadAddress").val($("#maddress1").val());
 				$("#sample4_jibunAddress").val($("#maddress2").val());
-				$("#phone").val($("#mphone").val());
+				$("#phone1").val($("#mphone1").val());
+				$("#phone2").val($("#mphone2").val());
+				$("#phone3").val($("#mphone3").val());
 			}else{
 				$("#orderName").val("");
 				$("#sample4_postcode").val("");
 				$("#sample4_roadAddress").val("");
 				$("#sample4_jibunAddress").val("");
-				$("#phone").val("");
+				$("#phone1").val("");
+				$("#phone2").val("");
+				$("#phone3").val("");
 			}
 		});
 	});
@@ -142,29 +146,33 @@
 						</td>
 						<td height="35" class="td_default"><input
 							class="input_default" type="text" id="mname" size="20"
-							maxlength="20" value="홍길동"></input></td>
+							maxlength="20" value="${login.username}"></input></td>
 					</tr>
 					<tr>
 						<td height="35" class="td_default">우편번호</td>
 						<td height="35" class="td_default"><input
 							class="input_default" type="text" id="mpost" size="6"
-							maxlength="6" value="12345" readonly></input></td>
+							maxlength="6" value="${login.post}" readonly></input></td>
 					</tr>
 					<tr>
 						<td height="35" class="td_default">주 소</td>
 						<td height="35" class="td_default"><input
 							class="input_default" type="text" id="maddress1" size="100"
-							maxlength="200" value="서울" readonly></input><br> <input
+							maxlength="200" value="${login.addr1}" readonly></input><br> <input
 							class="input_default" type="text" id="maddress2" size="100"
-							maxlength="200" value="강남" readonly></input></td>
+							maxlength="200" value="${login.addr2}" readonly></input></td>
 					</tr>
 
 					<tr>
 						<td height="35" class="td_default">휴대전화</td>
-						<td height="35" class="td_default"><input
-							class="input_default" type="text" id="mphone" size="15"
-							maxlength="15" value="01012345678"></input>
-
+						<td height="35" class="td_default">
+						<input class="input_default" type="text" id="mphone1" size="15"
+							maxlength="15" value="${login.phone1}"> -</input>
+						<input class="input_default" type="text" id="mphone2" size="15"
+							maxlength="15" value="${login.phone2}"> -</input>
+						<input class="input_default" type="text" id="mphone3" size="15"
+							maxlength="15" value="${login.phone3}"></input>
+							
 						</td>
 					</tr>
 				</table>
@@ -219,9 +227,15 @@
 
 					<tr>
 						<td height="35" class="td_default">휴대전화</td>
-						<td height="35" class="td_default"><input
-							class="input_default" type="text" id="phone" name="phone"
-							size="15" maxlength="15" value=""></input></td>
+						<td height="35" class="td_default">                                       
+						<input class="input_default" type="text" id="phone1" name="phone1"
+							size="15" maxlength="15" value=""></input>
+						<input class="input_default" type="text" id="phone2" name="phone2"
+							size="15" maxlength="15" value=""></input>
+						<input class="input_default" type="text" id="phone3" name="phone3"
+							size="15" maxlength="15" value=""></input>
+							
+						</td>
 					</tr>
 				</table>
 			</td>

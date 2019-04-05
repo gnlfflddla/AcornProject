@@ -22,7 +22,7 @@
 	</select>
 	<select id="productCategoryList" parameterType="String" resultType="ProductDTO">
 		select*from product 
-		where PCATEGORY = #{gCategory}
+		where PCATEGORY = #{pCategory}
 	</select>
 
 	<!-- 상품 색상,사이즈 목록 -->
@@ -36,14 +36,6 @@
 		from product
 		where pcode=#{pCode}
 	</select>
-
-<!-- 
- 	상품 상세 목록 ..Productinfo
-	<select id="ProductDetailList2" parameterType="string" resultType="ProductInfoDTO">
-		select pCode,pColor,pSize,pStock
-		from productinfo
-		where pcode=#{pCode}
-	</select> -->
 
 	<!-- 상품 색상 목록 -->
 	<select id="pColorList" parameterType="String" resultType="String">
@@ -66,6 +58,40 @@
 	   select count(*) 
 	   from orderinfo
  	   where pcode = #{pCode} 
+	</select>
+	
+	<!-- 상품 구매 목록 -->
+	<select id="ProductOrderList" parameterType="string" resultType="ProductOrderDTO">
+		select*from orderinfo
+		where userid = #{userid}
+	</select>
+	
+	<!-- 장바구니 상품 삭제 -->
+	<delete id="ProductOrderDel" parameterType="int">
+	  delete from orderinfo
+	  where num = #{num}
+	</delete>
+	
+	<!-- 구매상품 다중선택 삭제 -->
+	<delete id="ProductOrderAllDel" parameterType="arraylist">
+	 delete from orderinfo
+	 where num
+	 IN
+	 <foreach collection="list" item="item" open="(" separator="," close=")">
+	  #{item}
+	 </foreach> 
+	</delete>
+	
+	<!-- 상품 구매 목록 -->
+	<select id="ProductOrderDetail" parameterType="int" resultType="ProductOrderDTO">
+		select*from orderinfo
+		where num = #{num}
+	</select>
+	
+	<!-- 상품 검색 -->
+	<select id="ProductSearch" parameterType="string" resultType="ProductDTO">
+		select*from product
+		where (pcontent like '%'|| #{pSearch} || '%') or (pname like '%'|| #{pSearch} || '%')
 	</select>
 
 </mapper>

@@ -2,7 +2,9 @@ package com.dto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class ProductDTO {
@@ -15,7 +17,7 @@ public class ProductDTO {
 	private ArrayList<String> pSize;
 	private int pPrice;
 	private String pImage;
-	private CommonsMultipartFile theFile;
+	private List<MultipartFile> files;
 	
 	public ProductDTO() {
 		super();
@@ -23,7 +25,7 @@ public class ProductDTO {
 	}
 
 	public ProductDTO(String pCode, String pName, String pContent, String pCategory, ArrayList<String> pColor,
-			ArrayList<String> pSize, int pPrice, String pImage, CommonsMultipartFile theFile) {
+			ArrayList<String> pSize, int pPrice, String pImage, List<MultipartFile> files) {
 		super();
 		this.pCode = pCode;
 		this.pName = pName;
@@ -33,7 +35,7 @@ public class ProductDTO {
 		this.pSize = pSize;
 		this.pPrice = pPrice;
 		this.pImage = pImage;
-		this.theFile = theFile;
+		this.files = files;
 	}
 
 	public String getpCode() {
@@ -100,20 +102,21 @@ public class ProductDTO {
 		this.pImage = pImage;
 	}
 
-	public CommonsMultipartFile getTheFile() {
-		return theFile;
+	public List<MultipartFile> getFiles() {
+		return files;
 	}
 
-	public void setTheFile(CommonsMultipartFile theFile) {
-		this.theFile = theFile;
+	public void setFiles(List<MultipartFile> files) {
+		this.files = files;
 	}
 
 	@Override
 	public String toString() {
 		return "ProductDTO [pCode=" + pCode + ", pName=" + pName + ", pContent=" + pContent + ", pCategory=" + pCategory
-				+ ", pColor=" + pColor + ", pSize=" + pSize + ", pPrice=" + pPrice + ", pImage=" + pImage + ", theFile="
-				+ theFile + "]";
+				+ ", pColor=" + pColor + ", pSize=" + pSize + ", pPrice=" + pPrice + ", pImage=" + pImage + ", files="
+				+ files + "]";
 	}
+	
 	
 	
 	

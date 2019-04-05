@@ -15,7 +15,9 @@ public class ProductOrderDTO {
 	private String post;
 	private String addr1;
 	private String addr2;
-	private String phone;
+	private String phone1;
+	private String phone2;
+	private String phone3;
 	private String payMethod;
 	private String orderday;
 	
@@ -25,8 +27,8 @@ public class ProductOrderDTO {
 	}
 
 	public ProductOrderDTO(int num, String userid, String pCode, String pName, int pPrice, String pSize, String pColor,
-			int pAmount, String pImage, String orderName, String post, String addr1, String addr2, String phone,
-			String payMethod, String orderday) {
+			int pAmount, String pImage, String orderName, String post, String addr1, String addr2, String phone1,
+			String phone2, String phone3, String payMethod, String orderday) {
 		super();
 		this.num = num;
 		this.userid = userid;
@@ -41,7 +43,9 @@ public class ProductOrderDTO {
 		this.post = post;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
-		this.phone = phone;
+		this.phone1 = phone1;
+		this.phone2 = phone2;
+		this.phone3 = phone3;
 		this.payMethod = payMethod;
 		this.orderday = orderday;
 	}
@@ -150,12 +154,28 @@ public class ProductOrderDTO {
 		this.addr2 = addr2;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getPhone1() {
+		return phone1;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhone1(String phone1) {
+		this.phone1 = phone1;
+	}
+
+	public String getPhone2() {
+		return phone2;
+	}
+
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+
+	public String getPhone3() {
+		return phone3;
+	}
+
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
 	}
 
 	public String getPayMethod() {
@@ -179,10 +199,10 @@ public class ProductOrderDTO {
 		return "ProductOrderDTO [num=" + num + ", userid=" + userid + ", pCode=" + pCode + ", pName=" + pName
 				+ ", pPrice=" + pPrice + ", pSize=" + pSize + ", pColor=" + pColor + ", pAmount=" + pAmount
 				+ ", pImage=" + pImage + ", orderName=" + orderName + ", post=" + post + ", addr1=" + addr1 + ", addr2="
-				+ addr2 + ", phone=" + phone + ", payMethod=" + payMethod + ", orderday=" + orderday + "]";
+				+ addr2 + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + ", payMethod="
+				+ payMethod + ", orderday=" + orderday + "]";
 	}
 	
-
 	
 	
 	

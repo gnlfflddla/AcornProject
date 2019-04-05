@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.ProductDAO;
 import com.dto.ProductDTO;
+import com.dto.ProductOrderDTO;
 
 @Service
 public class ProductService {
@@ -25,6 +26,13 @@ public class ProductService {
 	public List<ProductDTO> ProductList(){
 		List<ProductDTO> list = null;
 			list = dao.ProductList();
+		return list;
+	}
+	
+	// 상품 카테고리 목록 
+	public List<ProductDTO> ProductCategoryList(String pcategory){
+		List<ProductDTO> list = null;
+			list = dao.ProductCategoryList(pcategory);
 		return list;
 	}
 	
@@ -62,13 +70,38 @@ public class ProductService {
 			result = dao.OrderQuantity(pCode);
 		return result;
 	}
-
-	public List<ProductDTO> productCategoryList(String gCategory) {
-		List<ProductDTO> list = null;
-			list = dao.productCategoryList(gCategory);
+	
+	// 상품구매 목록
+	public List<ProductOrderDTO> ProductOrderList(String userid) {
+		List<ProductOrderDTO> list = dao.ProductOrderList(userid);
 		return list;
 	}
-
+	
+	// 구매상품 삭제
+	public int ProductOrderDel(int num) {
+		int result = 0;
+			result = dao.ProductOrderDel(num);
+		return result;
+	}
+	
+	// 구매상품 선택 삭제
+	public int ProductOrderAllDel(List<String> list){
+		int result = 0;
+			result = dao.ProductOrderAllDel(list);
+		return result;
+	}
+	
+	// 상품구매 상세 목록
+	public List<ProductOrderDTO> ProductOrderDetail(int num) {
+		List<ProductOrderDTO> list = dao.ProductOrderDetail(num);
+		return list;
+	}
+	
+	// 상품 검색
+	public List<ProductDTO> ProductSearch(String pSearch) {
+		List<ProductDTO> list = dao.ProductSearch(pSearch);
+		return list;
+	}
 	
 
 }

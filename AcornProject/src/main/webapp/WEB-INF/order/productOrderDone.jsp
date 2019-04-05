@@ -68,7 +68,9 @@ $(document).ready(function(){
 				
 				<tr>
 					<td class="td_default" height="35"> 휴대전화</td>
-					<td class="td_default" height="35"> ${ProductOrderDTO.phone }</td>
+					<td class="td_default" height="35">
+					${ProductOrderDTO.phone1}-${ProductOrderDTO.phone2}-${ProductOrderDTO.phone3}
+					</td>
 				</tr>
 			</table>
 	</tr>
@@ -156,7 +158,7 @@ $(document).ready(function(){
 
 	<tr>
 		<td class="td_default" align="center"><a class="a_default"
-			href="OrderListDetailServlet?mem_id=guest">주문조회 페이지로 이동</a>
+			href="ProductOrderList">주문조회 페이지로 이동</a>
 		</td>
 	</tr>
 
