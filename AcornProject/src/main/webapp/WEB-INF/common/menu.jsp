@@ -1,6 +1,5 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="css/css.css">
 
 <html>    
 	<div class="sticky">
@@ -16,8 +15,8 @@
 <td width="120" align='center'><a href="ProductCategoryListServlet?gcategory=dress">Dress</a></td>
 <td width="120" align='center'><a href="ProductCategoryListServlet?gcategory=outer">Outer</a></td>
 <td width="120" align='center'><a href="ProductCategoryListServlet?gcategory=bottom">Bottom</a></td>
-<td width="120" align='center'><a href="map/map.jsp">오시는길</a>
-<td width="120" align='center'><a href="gradeMail.html">관리자메일발송</a>
+<td width="120" align='center'><a href="mapUI">오시는길</a>
+<td width="120" align='center'><a href="gradeMailUI">관리자메일발송</a>
 </td>
 
 </tr>

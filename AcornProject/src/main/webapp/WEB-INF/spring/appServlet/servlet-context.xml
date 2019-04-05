@@ -35,6 +35,9 @@
 	<mvc:view-controller path="/m/writeui" view-name="../board/boardWrite"/>
 	<mvc:view-controller path="/" view-name="redirect:/main"/>
 	<mvc:view-controller path="productAddForm" view-name="productAddForm"/>
+	<mvc:view-controller path="mapUI" view-name="map"/>
+	<mvc:view-controller path="gradeMailUI" view-name="gradeMail"/>
+	<mvc:view-controller path="choolcheckUI" view-name="choolcheck"/>
 	<mvc:view-resolvers>
 		<mvc:bean-name>
 			<bean
