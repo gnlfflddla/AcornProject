@@ -63,8 +63,8 @@ public class MemberDAO {
 		return n;
 	}
 	
-	public int Naverlogin(String id) {
-		int n=session.selectOne("MemberMapper.naverlogin",id);
-		return n;
+	public MemberDTO Naverlogin(String id) {
+		MemberDTO dto=session.selectOne("MemberMapper.naverlogin",id);
+		return dto;
 	}
 }

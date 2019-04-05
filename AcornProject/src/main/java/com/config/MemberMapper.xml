@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="memberupdate" parameterType="MemberDTO">
 	 update member
 	 set username=#{username},
-	 passwd=#{passwd},
+	 passwd=#{passwd, jdbcType=NULL},
 	 birthday = #{birthday},
      post=#{post},
      addr1=#{addr1},
@@ -74,9 +74,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where userid=#{userid}
 	</update>
 	
-	<select id="naverlogin" parameterType="string" resultType="int">
-	select count(*)
-	from member
-	where userid=#{userid}
+	<select id="naverlogin" parameterType="string" resultType="MemberDTO">
+	select userid,username,birthday,
+	 post,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception
+     from member
+     where userid = #{userid} 
 	</select>
 </mapper>

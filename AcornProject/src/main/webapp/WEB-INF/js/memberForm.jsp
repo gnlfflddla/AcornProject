@@ -12,6 +12,7 @@
 		var pwJ = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ //(하나 이상 대소문자,숫자,특수문자 포함된 최소 8자리 이상 )
 		var pwJ1 = /^(?=.*?[a-zA-Z])(?=.*?[0-9]).{4,}$/ //하나 이상의 대소문자, 숫자포함된 5~7자리 
 		var pwJ2 = /^(?=.*?[a-zA-Z0-9]).{1,}$/
+		
 
 		//이름 정규식
 		var nameJ = /^[가-힣a-zA-Z]+$/;
@@ -40,12 +41,7 @@
 				$("#userid").focus();
 				event.preventDefault();
 			}
-
-			else if (passwd.search(userid) > -1) {
-				alert("비밀번호에 아이디가 들어갈 수 없습니다.");
-				$("#passwd").focus();
-				event.preventDefault();
-			} else if (pwJ.test($("#passwd").val()) == false) {
+			else if (pwJ.test($("#passwd").val()) == false) {
 				alert("비밀번호는 대소문자와 숫자,특수문자를 포함한 8자리 이상이여야 합니다.");
 				$("#passwd").focus();
 				event.preventDefault();
@@ -158,12 +154,7 @@
 			
 		});
 
-		//인증번호
-		/* $("#num").on("click", function() {
-			$("#num_result").show();
-			event.preventDefault();
-		}); */
-
+		
 		//이메일 발송
 		$("#num").on("click", function(event) {
 			

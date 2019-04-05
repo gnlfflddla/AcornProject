@@ -98,9 +98,9 @@ public class MemberService {
 		return n;
 	}
 	
-	public int Naverlogin(String id) {
-		int n = 0;
-		n = dao.Naverlogin(id);
-		return n;
+	public MemberDTO Naverlogin(String id) {
+		MemberDTO dto= null;
+		dto = dao.Naverlogin(id);
+		return dto;
 	}
 }

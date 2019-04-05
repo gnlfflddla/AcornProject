@@ -1,6 +1,7 @@
 package com.controller.member;
 
 import java.io.IOException;
+import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,10 +40,6 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String login(@RequestParam Map<String, String> map, HttpSession session, Model m) {
 
-		// 네이버 로그인
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		m.addAttribute("url", naverAuthUrl);
-
 		MemberDTO dto = service.login(map);
 
 		String nextPage = null;
@@ -51,7 +48,7 @@ public class LoginController {
 			nextPage = "/main";
 		} else {
 			session.setAttribute("mesg", "아이디 또는 비빌번호를 다시 확인하세요.");
-			nextPage = "redirect:/loginUI"; // 절대경로
+			nextPage = "redirect:/loginUI"; 
 
 		}
 
@@ -59,24 +56,20 @@ public class LoginController {
 
 	}
 
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/main";
-	}
-
+	
 	@RequestMapping("/loginUI")
 	public ModelAndView login(HttpSession session) {
 		/* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		
 		/* 생성한 인증 URL을 View로 전달 */
 		return new ModelAndView("loginForm", "url", naverAuthUrl);
 	}
 
 	// 네아로 인증을 완료 한 후 전달받은 정보를 이용하여 access token을 발급 받음
 	@RequestMapping("/callback")
-	public ModelAndView callback(@RequestParam String code, @RequestParam String state, HttpSession session)
-			throws IOException {
+	public ModelAndView callback(@RequestParam String code, @RequestParam String state, 
+								HttpSession session)throws IOException {
 		/* 네아로 인증이 성공적으로 완료되면 code 파라미터가 전달되며 이를 통해 access token을 발급 */
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		String apiResult = naverLoginBO.getUserProfile(oauthToken);
@@ -86,20 +79,28 @@ public class LoginController {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		map = mapper.readValue(apiResult, new TypeReference<Map<Object, Object>>() {
 		});
-
+		
+		//id로 회원가입 유무확인
 		String id = (String) (((HashMap) map.get("response")).get("id"));
-		// {"resultcode":"00","message":"success","response":{"id":"172761631","email":"swih0910@naver.com","name":"\uac15\uc778\ud61c","birthday":"09-10"}}
-
-		int checkId = service.Naverlogin(id);
+		
+		MemberDTO dto = service.Naverlogin(id);
 		String nextPage = "";
-		if (checkId == 0) {
+		if (dto == null) {
 			session.setAttribute("naverInfo", map.get("response"));
 			nextPage = "redirect:/agreementUI";
 
 		} else {
+			
+			session.setAttribute("login", dto);
 			nextPage = "redirect:/main";
 		}
 
 		return new ModelAndView(nextPage);
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
 	}
 }
