@@ -9,10 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.MemberDTO;
@@ -37,23 +41,35 @@ public class LoginController {
 	@Autowired
 	MemberService service;
 
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+
+
 	@RequestMapping("/login")
-	public String login(@RequestParam Map<String, String> map, HttpSession session, Model m) {
-
-		MemberDTO dto = service.login(map);
-
+	public String login(@RequestParam("userid") String userid,
+						@RequestParam("passwd") String passwd,
+						HttpSession session, Model m) {
+		
 		String nextPage = null;
-		if (dto != null) {
-			session.setAttribute("login", dto);
-			nextPage = "/main";
-		} else {
-			session.setAttribute("mesg", "아이디 또는 비빌번호를 다시 확인하세요.");
+		
+		String bcrypt=service.pw(userid);	
+		if(bcrypt==null) {
+			session.setAttribute("mesg", "없는 아이디 입니다.");
 			nextPage = "redirect:/loginUI"; 
-
+		}else if(passwordEncoder.matches(passwd,bcrypt)){
+			
+			MemberDTO dto = service.login(userid);
+			if (dto != null) {
+				session.setAttribute("login", dto);
+				nextPage = "/main";
+			} 
+			
+		}else {
+			session.setAttribute("mesg", "비빌번호를 확인해주세요.");
+			nextPage = "redirect:/loginUI"; 
 		}
 
 		return nextPage;
-
 	}
 
 	

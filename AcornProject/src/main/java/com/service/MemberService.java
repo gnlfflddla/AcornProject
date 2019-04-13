@@ -25,11 +25,18 @@ public class MemberService {
 		return n;
 	}
 	
-	public MemberDTO login(Map<String, String> map) {
+	public String pw(String id){
+		String pw=null;
+		pw = dao.pw(id);
+		return pw;
+		
+	}
+	
+	public MemberDTO login(String userid) {
 
 		MemberDTO dto = null;
 
-		dto = dao.login(map);
+		dto = dao.login(userid);
 
 		return dto;
 	}

@@ -25,7 +25,7 @@
 <tr>
 <td>비빌번호*</td>
 <td>
-<input type="password" name="passwd" id="passwd" placeholder="비밀번호(4자리 이상)" required>
+<input type="password" name="passwd" id="passwd" placeholder="비밀번호(8자리 이상)" required>
 <span id="result2"></span>
 </td>
 

@@ -35,140 +35,157 @@
 			$("#check1").attr("hidden", true);
 
 		} else {
-
 			//비밀번호 정규식
 			var pwJ = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ //(하나 이상 대소문자,숫자,특수문자 포함된 최소 8자리 이상 )
 			var pwJ1 = /^(?=.*?[a-zA-Z])(?=.*?[0-9]).{4,}$/ //하나 이상의 대소문자, 숫자포함된 5~7자리 
 			var pwJ2 = /^(?=.*?[a-zA-Z0-9]).{1,}$/
-
-			$("form").on("submit", function() {
-				var passwd = $("#passwd").val();
-				var birthday = $("#birthday").val();
-				var post = $("#sample6_postcode").val();
-				var addr1 = $("#sample6_address").val();
-				var addr2 = $("#sample6_detailAddress").val();
-				var phone1 = $("#phone1").val();
-				var phone2 = $("#phone2").val();
-				var email = $("#email").val();
-
-				if (passwd.search(userid) > -1) {
-					alert("비밀번호에 아이디가 들어갈 수 없습니다.");
-					$("#passwd").focus();
-					event.preventDefault();
-				} else if (pwJ.test($("#passwd").val()) == false) {
-					alert("비밀번호는 대소문자와 숫자,특수문자를 포함한 8자리 이상이여야 합니다.");
-					$("#passwd").focus();
-					event.preventDefault();
-				}
-			}); //end form 
-
-			//비빌번호 유효성 검사
-			$("#passwd").on("keyup", function() {
-				if (pwJ.test($("#passwd").val())) {
-					$("#result2").text("안전");
-					$("#result2").css("color", "green");
-				} else if (pwJ1.test($("#passwd").val())) {
-					$("#result2").text("중간");
-					$("#result2").css("color", "darkorange");
-				} else if (pwJ2.test($("#passwd").val())) {
-					$("#result2").text("위험");
-					$("#result2").css("color", "red");
-				} else {
-					$("#result2").text("");
-				}
-
-			});//
-
-			//이메일 선택
-			$("#emailselector").on("change", function() {
-				var email2 = $("#email2").val();
-				var emailSelect = $(this).val();
-
-				$("#email2").val(emailSelect);
-
-			});
-
-			//인증번호
-			$("#num").on("click", function() {
-				$("#num_result").show();
-				event.preventDefault();
-			});
-
-			//비빌번호 확인
-			$("#passwd1").blur("keyup", function() {
-				var passwd = $("#passwd").val();
-				var mesg = "비번 불일치";
-
-				if (passwd == $(this).val()) {
-					mesg = "비번 일치";
-					$("#result3").css("color", "green");
-				} else {
-					$("#result3").css("color", "red");
-				}
-
-				$("#result3").text(mesg);
-
-			});
-
-			//이메일 발송 
-			$("#num").on("click", function(event) {
-
-				var email1 = $("#email1").val();
-				var email2 = $("#email2").val();
-				var email = email1 + "@" + email2;
-
-				$.ajax({
-					type : "post",
-					url : "authenication_number",
-					dataType : "text",
-					headers : {
-						"content-Type" : "application/json"
-					},
-					data : JSON.stringify({
-						email : email
-					}),
-					success : function(responseData, status, xhr) {
-						$("#result4").text("이메일이 발송되었습니다.");
-						$("#result4").css("color", "green");
-
-					},
-					error : function(xhr, status, error) {
-						alert("error");
-
+			
+				$("form").on("submit", function() {
+					
+					var passwd=$("#passwd").val();
+					var post=$("#sample6_postcode").val();
+					var addr1=$("#sample6_address").val();
+					var addr2=$("#sample6_detailAddress").val();
+					var phone1=$("#phone1").val();
+					var phone2=$("#phone2").val();
+					var email=$("#email").val();
+					
+					
+					if (pwJ.test($("#passwd").val()) == false) {
+						alert("비밀번호는 대소문자와 숫자,특수문자를 포함한 8자리 이상이여야 합니다.");
+						$("#passwd").focus();
+						event.preventDefault();
+					} else if (nameJ.test(username) == false) {
+						console.log(username);
+						alert("이름은 한글 또는 영문자만 입력가능합니다.");
+						event.preventDefault();
+					}else if (birthday.length < 8) {
+						alert("생년월일 8자리를 입력해주세요.");
+						$("#brithday").focus();
+						event.preventDefault();
+					} else if (emailJ.test(email) == false) {
+						alert("이메일을 확인해주세요.");
+						$("#email").focus();
+						event.preventDefault();
+					} else if (($("#result5").text().trim()) != "인증이완료되었습니다.") {
+						alert("이메일 인증은 필수입니다..");
+						console.log(A_num);
+						$("#email").focus();
+						event.preventDefault();
 					}
-
+					
 				});
-
-				event.preventDefault();
-			});
-
-			$("#check1").on("click", function(event) {
-				$.ajax({
-					type : "post",
-					url : "certification",
-					dataType : "text",
-					headers : {
-						"content-Type" : "application/json"
-					},
-					data : JSON.stringify({
-						A_num : $("#A_num").val()
-					}),
-					success : function(responseData, status, xhr) {
-						$("#result5").text(responseData);
-						$("#result5").css("color", "green");
-					},
-					error : function(xhr, status, error) {
-						alert("error");
-
-					}
-
-				});
-
-				event.preventDefault();
-			});
 
 		}
+		
+		
+		//비빌번호 유효성 검사
+		$("#passwd").on("keyup", function() {
+			if (pwJ.test($("#passwd").val())) {
+				$("#result2").text("안전");
+				$("#result2").css("color", "green");
+			} else if (pwJ1.test($("#passwd").val())) {
+				$("#result2").text("중간");
+				$("#result2").css("color", "darkorange");
+			} else if (pwJ2.test($("#passwd").val())) {
+				$("#result2").text("위험");
+				$("#result2").css("color", "red");
+			} else {
+				$("#result2").text("");
+			}
+		}); 
+		
+		//비빌번호 확인
+		$("#passwd1").blur("keyup", function() {
+			var passwd = $("#passwd").val();
+			var mesg = "비번 불일치";
+
+			if (passwd == $(this).val()) {
+				mesg = "비번 일치";
+				$("#result3").css("color", "green");
+			} else {
+				$("#result3").css("color", "red");
+			}
+
+			$("#result3").text(mesg);
+
+		});
+ 
+		//이메일 선택
+		$("#emailselector").on("change", function() {
+			var email2 = $("#email2").val();
+			var emailSelect = $(this).val();
+			
+			$("#email2").val(emailSelect);
+			
+		});
+ 
+		$("#num").on("click", function(event) {
+			
+			var email1 = $("#email1").val();
+			var email2 = $("#email2").val();
+			var email=email1+"@"+email2;
+			
+			$.ajax({
+				type : "post",
+				url : "authenication_number",
+				dataType : "text",
+				headers:{
+					"content-Type":"application/json"
+				},
+				data :JSON.stringify({email:email}),
+				success : function(responseData, status, xhr) {
+					$("#result4").text("이메일이 발송되었습니다.");
+					$("#result4").css("color", "green");
+
+				},
+				error : function(xhr, status, error) {
+					alert("error");
+
+				}
+
+			});
+
+			event.preventDefault();
+		});
+ 
+ 
+ $("#check1").on("click",function(event){
+		$.ajax({
+			type : "post",
+			url : "certification",
+			dataType : "text",
+			headers:{
+				"content-Type":"application/json"
+			},
+			data :JSON.stringify({A_num:$("#A_num").val()}),
+			success : function(responseData, status, xhr) {
+			    $("#result5").text(responseData);
+			    $("#result5").css("color","red");
+			},
+			error : function(xhr, status, error) {
+				alert("error");
+				
+			}
+			
+		});
+		
+		event.preventDefault();
 	});
+		
+		
+		
+		
+				
+		});
+	
+		
+				
+			
+				
+				
+				
+			
 </script>
 
 <form action="memberUpdate" method="post">
@@ -196,9 +213,7 @@
 		<tr>
 			<td>비빌번호*</td>
 			<td><input type="password" name="passwd" id="passwd"
-				placeholder="비밀번호(4자리 이상)" required> <span id="result2"></span>
-			</td>
-
+				placeholder="비밀번호(8자리 이상)" required> <span id="result2"></span>
 		</tr>
 
 		<tr>

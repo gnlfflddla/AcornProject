@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,9 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	
@@ -37,6 +41,9 @@ public class MemberController {
 	
 	@RequestMapping("/memberAdd")
 	public String memberAdd(MemberDTO dto,HttpSession session) {
+		
+		//비밀번호 암호화
+		dto.setPasswd(passwordEncoder.encode(dto.getPasswd()));
 		
 		int n=service.memberAdd(dto);
 		if(n!=0) {
@@ -91,10 +98,14 @@ public class MemberController {
 	public String memberUpdate(MemberDTO dto2, HttpSession session) {
 		
 		MemberDTO dto=(MemberDTO)session.getAttribute("login");
-		System.out.println(dto);
+				
 		String nextPage="";
 		if(dto!=null) {
-			System.out.println(dto2);
+			//비밀번호 암호화
+			if(dto2.getPasswd()!=null) {
+			dto2.setPasswd(passwordEncoder.encode(dto2.getPasswd()));
+			System.out.println(dto2.getPasswd());
+			}
 			
 			int n=service.update(dto2);
 			nextPage="main";

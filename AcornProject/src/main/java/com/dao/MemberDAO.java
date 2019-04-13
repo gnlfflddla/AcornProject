@@ -20,9 +20,13 @@ public class MemberDAO {
 		int n=session.insert("MemberMapper.memberAdd",dto);
 		return n;
 	}
+	public String pw(String id){
+		String pw=session.selectOne("MemberMapper.pw",id);
+		return pw;
+	}
 	
-	public MemberDTO login(Map<String, String> map) {
-		MemberDTO dto=session.selectOne("MemberMapper.login",map);
+	public MemberDTO login(String userid) {
+		MemberDTO dto=session.selectOne("MemberMapper.login",userid);
 		return dto;
 	}
 	

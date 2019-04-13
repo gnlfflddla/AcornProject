@@ -98,6 +98,4 @@ public class NaverLoginBO {
 		return response.getBody();
 	}
 	
-	
-
 }
