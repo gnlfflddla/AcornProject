@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -9,12 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	values(#{userid},#{passwd},#{username},#{birthday},#{post},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2},#{gradeno},#{reception})
    </insert>
 
-	<select id="login" parameterType="hashmap" resultType="MemberDTO">
-	<!-- 휴대전화 - 삽입 substr? concat? -->
+<!-- 	<select id="login" parameterType="hashmap" resultType="MemberDTO">
+	휴대전화 - 삽입 substr? concat?
 	 select userid,passwd,username,
 	 to_char(to_date(birthday,'yyyy-mm-dd'))as birthday,post,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception
      from member
-     where userid = #{userid} and passwd = #{passwd}
+     where userid = #{userid} and passwd = #{passwd} -->
+
+	<select id="login" parameterType="hashmap"
+		resultType="MemberDTO">
+		<!-- 휴대전화 - 삽입 substr? concat? -->
+		select userid,passwd,username,birthday,post,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception
+		from member
+		where userid = #{userid} and passwd = #{passwd}
+
 	</select>
 	
 	<select id="idSearch" parameterType="MemberDTO" resultType="hashmap" >

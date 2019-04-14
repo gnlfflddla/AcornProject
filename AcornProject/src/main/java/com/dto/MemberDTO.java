@@ -15,6 +15,7 @@ public class MemberDTO {
 	private String email2;
 	private String gradeno;
 	private String reception;
+	
 	public MemberDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -129,6 +130,7 @@ public class MemberDTO {
 				+ ", phone2=" + phone2 + ", phone3=" + phone3 + ", email1=" + email1 + ", email2=" + email2
 				+ ", gradeno=" + gradeno + ", reception=" + reception + "]";
 	}
+
 	
 	
 	

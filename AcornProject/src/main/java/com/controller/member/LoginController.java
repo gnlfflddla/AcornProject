@@ -27,7 +27,9 @@ public class LoginController {
 		String nextPage=null;
 		if(dto!=null) {
 			session.setAttribute("login", dto);
-			nextPage="/main";
+			//nextPage="/main";
+			//nextPage="redirect:/productList";
+			nextPage="redirect:/main";
 		}else {
 			session.setAttribute("mesg", "아이디 또는 비빌번호를 다시 확인하세요.");
 			nextPage="redirect:/loginUI"; //절대경로

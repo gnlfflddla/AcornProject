@@ -2,12 +2,14 @@ package com.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.ProductDTO;
 import com.dto.ProductInfoDTO;
+import com.dto.ProductOrderDTO;
 
 @Repository
 public class ProductDAO {
@@ -30,10 +32,16 @@ public class ProductDAO {
 		}
 		return n;
 	}
-
+	
 	// 상품 목록
 	public List<ProductDTO> ProductList() {
 		List<ProductDTO> list = session.selectList("ProductMapper.ProductList");
+		return list;
+	}
+	
+	// 상품 카테고리 목록
+	public List<ProductDTO> ProductCategoryList(String pcategory) {
+		List<ProductDTO> list = session.selectList("ProductMapper.productCategoryList",pcategory);
 		return list;
 	}
 
@@ -66,11 +74,34 @@ public class ProductDAO {
 		int result = session.selectOne("ProductMapper.OrderQuantity", pCode);
 		return result;
 	}
-
-	public List<ProductDTO> productCategoryList(String gCategory) {
-		// TODO Auto-generated method stub
-		List<ProductDTO> list = session.selectList("ProductMapper.productCategoryList", gCategory);
+	
+	// 상품 구매 목록
+	public List<ProductOrderDTO> ProductOrderList(String userid){
+		List<ProductOrderDTO> list = session.selectList("ProductMapper.ProductOrderList",userid);
 		return list;
 	}
-
+	
+	// 구매상품 삭제
+	public int ProductOrderDel(int num) {
+		int result = session.delete("ProductMapper.ProductOrderDel",num);
+		return result;
+	}
+	
+	// 구매상품 다중선택 삭제
+	public int ProductOrderAllDel(List<String> list) {
+		int result = session.delete("ProductMapper.ProductOrderAllDel",list);
+		return result;
+	}
+	
+	// 상품 구매 상세 목록
+	public List<ProductOrderDTO> ProductOrderDetail(int num){
+		List<ProductOrderDTO> list = session.selectList("ProductMapper.ProductOrderDetail",num);
+		return list;
+	}
+	
+	// 상품 검색
+	public List<ProductDTO> ProductSearch(String pSearch){
+		List<ProductDTO> list = session.selectList("ProductMapper.ProductSearch",pSearch);
+		return list;
+	}
 }

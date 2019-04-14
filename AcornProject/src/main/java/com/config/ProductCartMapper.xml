@@ -47,10 +47,10 @@
 	<!-- 상품 구매 -->
 	<insert id="ProductOrderDone" parameterType="ProductOrderDTO">
 	 insert into orderInfo(num,userid,pCode,pName,pPrice,pSize,pColor,pAmount,
-	 					   pImage,orderName,post,addr1,addr2,phone,payMethod)
+	 					   pImage,orderName,post,addr1,addr2,phone1,phone2,phone3,payMethod)
 	 values(orderInfo_seq.nextval,#{userid},#{pCode},#{pName},#{pPrice},
 	   #{pSize},#{pColor},#{pAmount},#{pImage},#{orderName},#{post},
-	   #{addr1},#{addr2},#{phone},#{payMethod})
+	   #{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{payMethod})
 	</insert>
 	
 	<!-- 상품 전체 구매 .. 목록 -->
@@ -69,10 +69,10 @@
 	 insert all 
 	 <foreach collection="list" item="item">
 	   into orderinfo(num,userid,pCode,pName,pPrice,pSize,pColor,pAmount,
-	 					   pImage,orderName,post,addr1,addr2,phone,payMethod)
+	 					   pImage,orderName,post,addr1,addr2,phone1,phone2,phone3,payMethod)
 	   values(orderSeq(),#{item.userid},#{item.pCode},#{item.pName},#{item.pPrice},
 	   #{item.pSize},#{item.pColor},#{item.pAmount},#{item.pImage},#{item.orderName},#{item.post},
-	   #{item.addr1},#{item.addr2},#{item.phone},#{item.payMethod})
+	   #{item.addr1},#{item.addr2},#{item.phone1},#{item.phone2},#{item.phone3},#{item.payMethod})
 	 </foreach>
 	  select * from dual
 	</insert>

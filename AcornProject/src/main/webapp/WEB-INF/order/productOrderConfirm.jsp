@@ -15,13 +15,17 @@ $(document).ready(function() {
 			$("#sample4_postcode").val($("#mpost").val());
 			$("#sample4_roadAddress").val($("#maddress1").val());
 			$("#sample4_jibunAddress").val($("#maddress2").val());
-			$("#phone").val($("#mphone").val());
+			$("#phone1").val($("#mphone1").val());
+			$("#phone2").val($("#mphone2").val());
+			$("#phone3").val($("#mphone3").val());
 		}else{
 			$("#orderName").val("");
 			$("#sample4_postcode").val("");
 			$("#sample4_roadAddress").val("");
 			$("#sample4_jibunAddress").val("");
-			$("#phone").val("");
+			$("#phone1").val("");
+			$("#phone2").val("");
+			$("#phone3").val("");
 		}
 	});
 });	 
@@ -83,13 +87,13 @@ $(document).ready(function() {
 					<tr>
 						<td class="td_default" width="80">${dto.num}</td>
 						
-<%-- 						<td class="td_default" width="80"><img
+						<td class="td_default" width="80"><img
 							src="/images/${fn:split(dto.pImage, ',')[0]}" border="0" align="center"
-							width="80"/></td> --%>
-							
-							<td class="td_default" width="80"><img
-							src="/shop/images/items/${dto.pImage}" border="0" align="center"
 							width="80"/></td>
+							
+<%-- 							<td class="td_default" width="80"><img
+							src="/images/${dto.pImage}" border="0" align="center"
+							width="80"/></td> --%>
 							
 						<td class="td_default" width="300" style='padding-left: 30px'>${dto.pName}
 							<br> <font size="2" color="#665b5f">[옵션 : 사이즈(${dto.pSize})
@@ -142,7 +146,7 @@ $(document).ready(function() {
 					</td>
 					<td height="35" class="td_default">
 						<input class="input_default" type="text" id="mname" size="20"
-							maxlength="20" value="홍길동"></input>
+							maxlength="20" value="${login.username }"></input>
 					</td>
 				</tr>
 				<tr>
@@ -152,7 +156,7 @@ $(document).ready(function() {
 					</td>
 					<td height="35" class="td_default">
 						<input class="input_default" type="text" id="mpost" size="6"
-							maxlength="6" value="12345" readonly></input>
+							maxlength="6" value="${login.post}" readonly></input>
 			<!-- 			<input class="input_default" type="text" id="mpost2" size="4"
 							maxlength="3" value="987" readonly></input> -->
 						
@@ -165,9 +169,9 @@ $(document).ready(function() {
 					</td>
 					<td height="35" class="td_default">
 						<input class="input_default" type="text" id="maddress1" size="35"
-							maxlength="200" value="서울" readonly></input><br>
+							maxlength="200" value="${login.addr1}" readonly></input><br>
 						<input class="input_default" type="text" id="maddress2" size="35"
-							maxlength="200" value="강남" readonly></input>
+							maxlength="200" value="${login.addr2}" readonly></input>
 					</td>
 				</tr>
 				
@@ -176,8 +180,12 @@ $(document).ready(function() {
 						휴대전화
 					</td>
 					<td height="35" class="td_default">
-						<input class="input_default" type="text" id="mphone" size="15"
-							maxlength="15" value="01012345678"></input>
+						<input class="input_default" type="text" id="mphone1" size="15"
+							maxlength="15" value="${login.phone1}"> -</input>
+						<input class="input_default" type="text" id="mphone2" size="15"
+							maxlength="15" value="${login.phone2}"> -</input>
+						<input class="input_default" type="text" id="mphone3" size="15"
+							maxlength="15" value="${login.phone3}"></input>
 						
 					</td>
 				</tr>
@@ -248,8 +256,12 @@ $(document).ready(function() {
 						휴대전화
 					</td>
 					<td height="35" class="td_default">
-						<input class="input_default" type="text" id="phone"
-							name="phone" size="15" maxlength="15" value=""></input>
+						<input class="input_default" type="text" id="phone1"
+							name="phone1" size="15" maxlength="15" value=""> -</input>
+						<input class="input_default" type="text" id="phone2"
+							name="phone2" size="15" maxlength="15" value=""> -</input>
+						<input class="input_default" type="text" id="phone3"
+							name="phone3" size="15" maxlength="15" value=""></input>
 					
 					</td>
 				</tr>

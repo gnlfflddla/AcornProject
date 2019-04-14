@@ -78,12 +78,12 @@ $(document).ready(function() {
 					</tr>
 
 					<tr>
- 					<%-- 	<td rowspan="7"><img class="mainImage" id="${fn:split(ProductDetail.pImage, ',')[0]}" 
+ 					 	<td rowspan="7"><img class="mainImage" id="${fn:split(ProductDetail.pImage, ',')[0]}" 
  						 src="/images/${fn:split(ProductDetail.pImage, ',')[0]}" border="0" align="center" width="300" />
-						</td> --%>
-						<td rowspan="7"><img class="mainImage" id="${fn:split(ProductDetail.pImage, ',')[0]}" 
- 						 src="/images/${ProductDetail.pImage}" border="0" align="center" width="300" />
 						</td>
+<%-- 						<td rowspan="7"><img class="mainImage" id="${fn:split(ProductDetail.pImage, ',')[0]}" 
+ 						 src="/images/${ProductDetail.pImage}" border="0" align="center" width="300" />
+						</td> --%>
 						<td>제품코드</td>
 						<td colspan="2" style='padding-left: 30px'>${ProductDetail.pCode} &nbsp;&nbsp;&nbsp; 
 						<b style="color:red"> 구매:(${OrderQuantity}개) </b>

@@ -10,9 +10,9 @@
 <c:set var="post" value="${xxx[0].post}" />
 <c:set var="addr1" value="${xxx[0].addr1}" />
 <c:set var="addr2" value="${xxx[0].addr2}" />
-<c:set var="phone" value="${xxx[0].phone}" />
-
-
+<c:set var="phone1" value="${xxx[0].phone1}" />
+<c:set var="phone2" value="${xxx[0].phone2}" />
+<c:set var="phone3" value="${xxx[0].phone3}" />
 <table width="70%" cellspacing="0" cellpadding="0">
 
 	<tr>
@@ -70,7 +70,7 @@
 				
 				<tr>
 					<td class="td_default" height="35"> 휴대전화</td>
-					<td class="td_default" height="35"> ${phone}</td>
+					<td class="td_default" height="35"> ${phone1}-${phone2}-${phone3}</td>
 				</tr>
 			</table>
 	</tr>
@@ -163,7 +163,7 @@
 
 	<tr>
 		<td class="td_default" align="center"><a class="a_default"
-			href="OrderListDetailServlet?mem_id=guest">주문조회 페이지로 이동</a></td>
+			href="ProductOrderList">주문조회 페이지로 이동</a></td>
 	</tr>
 
 	<tr>
