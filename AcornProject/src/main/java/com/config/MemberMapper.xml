@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
    <insert id="memberAdd" parameterType="MemberDTO">
 	insert into member (userid,passwd,username,birthday,post,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception)
-	values(#{userid},#{passwd},#{username},#{birthday},#{post},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2},#{gradeno},#{reception})
+	values(#{userid},#{passwd, jdbcType=NULL},#{username},#{birthday},#{post},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2},#{gradeno},#{reception})
    </insert>
 
 <!-- 	<select id="login" parameterType="hashmap" resultType="MemberDTO">
@@ -16,13 +16,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      from member
      where userid = #{userid} and passwd = #{passwd} -->
 
-	<select id="login" parameterType="hashmap"
-		resultType="MemberDTO">
-		<!-- 휴대전화 - 삽입 substr? concat? -->
-		select userid,passwd,username,birthday,post,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception
-		from member
-		where userid = #{userid} and passwd = #{passwd}
-
+   
+   <select id="pw" parameterType="string" resultType="string">
+	select passwd
+	from member
+    where userid = #{userid} 
+	</select>
+   
+	<select id="login" parameterType="string" resultType="MemberDTO">
+	<!-- 휴대전화 - 삽입 substr? concat? -->
+	 select userid,passwd,username,
+	 to_char(to_date(birthday,'yyyy-mm-dd'))as birthday,post,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception
+     from member
+     where userid = #{userid}
 	</select>
 	
 	<select id="idSearch" parameterType="MemberDTO" resultType="hashmap" >
@@ -42,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="memberupdate" parameterType="MemberDTO">
 	 update member
 	 set username=#{username},
-	 passwd=#{passwd},
+	 passwd=#{passwd, jdbcType=NULL},
 	 birthday = #{birthday},
      post=#{post},
      addr1=#{addr1},
@@ -82,4 +88,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set passwd=#{passwd}
 		where userid=#{userid}
 	</update>
+	
+	<select id="naverlogin" parameterType="string" resultType="MemberDTO">
+	select userid,username,birthday,
+	 post,addr1,addr2,phone1,phone2,phone3,email1,email2,gradeno,reception
+     from member
+     where userid = #{userid} 
+	</select>
 </mapper>

@@ -9,7 +9,7 @@
 <!-- 여기 껍데기로 보내기 빼고 바로 jsp로 보냈음 -->
 
 <c:choose>
-	<c:when test="${login != null }">
+	<c:when test="${login != null}">
 		<a href="logout" >로그아웃</a>&nbsp;&nbsp;
 		<a href="myPage">나의정보</a>&nbsp;&nbsp;
 		<a href="choolCheck">출석체크</a>&nbsp;&nbsp;
@@ -23,6 +23,7 @@
 	<c:otherwise>
 		<a href="loginUI">로그인</a>&nbsp;&nbsp;
 		<a href="agreementUI">회원가입</a>&nbsp;&nbsp;
+		
 	</c:otherwise>
 </c:choose>
 <a href="boardList">게시판</a>&nbsp;&nbsp;<br>

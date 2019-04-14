@@ -21,7 +21,6 @@
 	
 	<!-- 단순 화면 변환 -->
 	<!-- ㅡmember 관련 -->
-	<mvc:view-controller path="/loginUI" view-name="loginForm"/>
 	<mvc:view-controller path="/agreementUI" view-name="agreementForm"/>
 	<mvc:view-controller path="/memberUI" view-name="memberForm"/>
 	<mvc:view-controller path="/memberIdSearchUI" view-name="memberIdSearchForm"/>
@@ -51,8 +50,8 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<context:component-scan base-package="com.*" />
-	
+	<context:component-scan base-package="com.*"/>
+	<bean id="naverLoginBO" class="com.oauth.NaverLoginBO" />
 
 	<!-- SET default mail properties -->
 	<bean id="mailSender"
@@ -70,6 +69,22 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- 비밀번호 암호화 위한 bean -->
+	<beans:beans
+		xmlns="http://www.springframework.org/schema/security"
+		xmlns:beans="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://www.springframework.org/schema/security 
+                        http://www.springframework.org/schema/security/spring-security.xsd">
+
+		<beans:bean id="bcryptPasswordEncoder"
+			class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+
+	</beans:beans>
 
 		<!-- 파일 업로드 -->
 	<bean id="multipartResolver"

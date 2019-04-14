@@ -20,9 +20,13 @@ public class MemberDAO {
 		int n=session.insert("MemberMapper.memberAdd",dto);
 		return n;
 	}
+	public String pw(String id){
+		String pw=session.selectOne("MemberMapper.pw",id);
+		return pw;
+	}
 	
-	public MemberDTO login(Map<String, String> map) {
-		MemberDTO dto=session.selectOne("MemberMapper.login",map);
+	public MemberDTO login(String userid) {
+		MemberDTO dto=session.selectOne("MemberMapper.login",userid);
 		return dto;
 	}
 	
@@ -61,5 +65,10 @@ public class MemberDAO {
 		System.out.println(map2);
 		int n=session.update("MemberMapper.passwdUpdate",map2);
 		return n;
+	}
+	
+	public MemberDTO Naverlogin(String id) {
+		MemberDTO dto=session.selectOne("MemberMapper.naverlogin",id);
+		return dto;
 	}
 }

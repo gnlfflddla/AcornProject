@@ -219,6 +219,19 @@
 
 	});
 </script>  
+=======
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+
+<c:choose>
+        <c:when test="${not empty naverInfo}">
+            <jsp:include page="../js/naverMember.jsp" flush="true"/> 
+        </c:when>         
+        <c:otherwise>
+           <jsp:include page="../js/memberForm.jsp" flush="true"/>
+         </c:otherwise>
+</c:choose>
+>>>>>>> member
 
 <form action="memberAdd" method="post">
 <table border='2'>
@@ -234,7 +247,7 @@
 <tr>
 <td>비빌번호*</td>
 <td>
-<input type="password" name="passwd" id="passwd" placeholder="비밀번호(4자리 이상)" required>
+<input type="password" name="passwd" id="passwd" placeholder="비밀번호(8자리 이상)" required>
 <span id="result2"></span>
 </td>
 

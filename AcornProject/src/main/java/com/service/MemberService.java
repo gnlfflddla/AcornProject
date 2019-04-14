@@ -24,12 +24,19 @@ public class MemberService {
 
 		return n;
 	}
-
-	public MemberDTO login(Map<String, String> map) {
+	
+	public String pw(String id){
+		String pw=null;
+		pw = dao.pw(id);
+		return pw;
+		
+	}
+	
+	public MemberDTO login(String userid) {
 
 		MemberDTO dto = null;
 
-		dto = dao.login(map);
+		dto = dao.login(userid);
 
 		return dto;
 	}
@@ -96,5 +103,11 @@ public class MemberService {
 		n = dao.passwdUpdate(map2);
 
 		return n;
+	}
+	
+	public MemberDTO Naverlogin(String id) {
+		MemberDTO dto= null;
+		dto = dao.Naverlogin(id);
+		return dto;
 	}
 }

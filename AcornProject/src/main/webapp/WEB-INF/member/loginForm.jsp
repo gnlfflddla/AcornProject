@@ -69,6 +69,9 @@
 <span id="mesg"></span><br>
 <input type="submit" value="로그인" id="sub">
 </form>
+<a href="${url}">
+<img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+</a>
 <div class="butt">
 <jsp:include page="../common/search.jsp"/>
 </div>

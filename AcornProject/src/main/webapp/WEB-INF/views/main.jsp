@@ -11,6 +11,9 @@
 </c:if>
 <c:remove var="mesg"/>
 
+<c:set var="naverInfo" value="${naverInfo}" scope="session"/> 
+ <c:remove var="naverInfo"/> 
+
 <!DOCTYPE html>
 <html>
 <head>
