@@ -1,6 +1,5 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="css/css.css">
 
 <html>    
 	<div class="sticky">
@@ -12,12 +11,12 @@
 <td width="120" align='center'><a href="">Best</a></td>
 <td width="120" align='center'><a href="">Sale</a></td>
 <td width="120" align='center'><a href="">Knit</a></td>
-<td width="120" align='center'><a href="ProductCategoryList?pcategory=top">Top</a></td>
-<td width="120" align='center'><a href="ProductCategoryList?pcategory=dress">Dress</a></td>
-<td width="120" align='center'><a href="ProductCategoryList?pcategory=outer">Outer</a></td>
-<td width="120" align='center'><a href="ProductCategoryList?pcategory=bottom">Bottom</a></td>
-<td width="120" align='center'><a href="ProductCategoryList/map.jsp">오시는길</a>
-<td width="120" align='center'><a href="gradeMail.html">관리자메일발송</a>
+<td width="120" align='center'><a href="ProductCategoryListServlet?gcategory=top">Top</a></td>
+<td width="120" align='center'><a href="ProductCategoryListServlet?gcategory=dress">Dress</a></td>
+<td width="120" align='center'><a href="ProductCategoryListServlet?gcategory=outer">Outer</a></td>
+<td width="120" align='center'><a href="ProductCategoryListServlet?gcategory=bottom">Bottom</a></td>
+<td width="120" align='center'><a href="mapUI">오시는길</a>
+<td width="120" align='center'><a href="gradeMailUI">관리자메일발송</a>
 </td>
 
 </tr>

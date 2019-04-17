@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ChoolSeokMapper">
+
+  	<select id="choolCheck" parameterType="string" resultType="ChoolCheckDTO">
+  		select userid, choolcheck, count, timecheck
+  		from choolseok
+  		where userid = #{check}
+  	</select>
+  	
+  	<insert id="choolInsert" parameterType="hashmap">
+  		
+  		insert into choolseok (userid, choolcheck, count, timecheck)
+		values (#{userid}, 'Y', 1, #{timecheck})
+		
+  	</insert>
+  	
+  	<update id="choolUpdate" parameterType="hashmap">
+  	
+  		update choolseok
+        set timecheck = #{timecheck}, count = count +1
+        where userid = #{userid}
+  	</update>
+  	
+  	<update id="choolClear" parameterType="string">
+  		update choolseok
+  		set count = 0
+  		where userid = #{check}
+  	</update>
+  	
+  	<update id="expiration" parameterType="String">
+  		update member
+  		set mileage = mileage + 500
+  		where userid = #{check}
+  	</update>
+  	
+  	<update id ="randomMileage" parameterType="map">
+  		update member
+  		set mileage = mileage + #{mileage}
+  		where userid = #{userid}
+  	</update>
+</mapper>

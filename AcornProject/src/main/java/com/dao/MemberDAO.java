@@ -2,12 +2,15 @@ package com.dao;
 
 
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.ChoolCheckDTO;
 import com.dto.MemberDTO;
 
 @Repository
@@ -70,5 +73,34 @@ public class MemberDAO {
 	public MemberDTO Naverlogin(String id) {
 		MemberDTO dto=session.selectOne("MemberMapper.naverlogin",id);
 		return dto;
+	}
+	public ChoolCheckDTO choolCheck (String check) {
+		return session.selectOne("ChoolSeokMapper.choolCheck",check);
+	}
+	
+	public int choolInsert (HashMap<String, String> map) {
+		return session.insert("ChoolSeokMapper.choolInsert", map);
+	}
+	
+	public int choolUpdate (HashMap<String, String> map) {
+		return session.update("ChoolSeokMapper.choolUpdate", map);
+	}
+	
+	public int choolClear (String check) {
+
+		return session.update("ChoolSeokMapper.choolClear", check);
+	}
+	
+	public List<MemberDTO> memberSelect (){
+		return session.selectList("MemberMapper.memberSelect");
+	}
+	
+	public int expiration (String check) {
+		return session.update("ChoolSeokMapper.expiration", check);
+	}
+	
+	public int randomMileage (HashMap<String, Object> mileageMap) {
+		System.out.println("확률 마일리지 "+mileageMap);
+		return session.update("ChoolSeokMapper.randomMileage", mileageMap);
 	}
 }
