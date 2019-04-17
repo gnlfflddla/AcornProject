@@ -52,13 +52,6 @@ public class LoginController {
 		
 		String nextPage = null;
 		
-/*<<<<<<< HEAD*/   //수정 필요
-		/*
-		 * if(dto!=null) { session.setAttribute("login", dto); //nextPage="/main";
-		 * //nextPage="redirect:/productList"; nextPage="redirect:/main"; }else {
-		 * session.setAttribute("mesg", "아이디 또는 비빌번호를 다시 확인하세요.");
-		 * nextPage="redirect:/loginUI"; //절대경로
-		 *//*=======*/
 		String bcrypt=service.pw(userid);	
 		if(bcrypt==null) {
 			session.setAttribute("mesg", "없는 아이디 입니다.");
@@ -70,7 +63,6 @@ public class LoginController {
 				session.setAttribute("login", dto);
 				nextPage = "/main";
 			} 
-/*>>>>>>> member*/
 			
 		}else {
 			session.setAttribute("mesg", "비빌번호를 확인해주세요.");
