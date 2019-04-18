@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-<img src="/my/images/choolStart2.png" style="width:80%;height:250px;">
+<img src="/AcornProject/images/choolStart2.png" style="width:80%;height:250px;">
 <br>
  ${cMesg }
  <span id ="result">
@@ -26,13 +26,13 @@
 		<c:choose>
 	<c:when test="${empty cMesg==true}">
 
-		<a href="/my/m/choolcheck">
-		<img src="/my/images/cc1.png">
+		<a href="/AcornProject/m/choolcheck">
+		<img src="/AcornProject/images/cc1.png">
 		</a>
 		<br>
 	</c:when>
 	<c:otherwise>
-		<img src="/my/images/cc1-black.png">
+		<img src="/AcornProject/images/cc1-black.png">
 		<br>
 	</c:otherwise>
 	

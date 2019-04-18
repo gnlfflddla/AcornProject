@@ -17,7 +17,7 @@
 <td width="120" align='center'><a href="ProductCategoryList?pcategory=outer">Outer</a></td>
 <td width="120" align='center'><a href="ProductCategoryList?pcategory=bottom">Bottom</a></td>
 <td width="120" align='center'><a href="ProductCategoryList/map.jsp">오시는길</a>
-<td width="120" align='center'><a href="mail">관리자메일발송</a>
+<td width="120" align='center'><a href="gradeMailUI">관리자메일발송</a>
 </td>
 
 </tr>
