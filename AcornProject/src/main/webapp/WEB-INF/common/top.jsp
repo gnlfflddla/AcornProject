@@ -12,7 +12,7 @@
 	<c:when test="${login != null}">
 		<a href="logout" >로그아웃</a>&nbsp;&nbsp;
 		<a href="myPage">나의정보</a>&nbsp;&nbsp;
-		<a href="choolCheck">출석체크</a>&nbsp;&nbsp;
+		<a href="choolcheckUI">출석체크</a>&nbsp;&nbsp;
 		<c:if test="${login.gradeno eq 'admin'}">
 		<a href="productAddForm">상품등록</a>&nbsp;&nbsp;
 		</c:if>

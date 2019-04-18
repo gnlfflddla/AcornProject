@@ -31,7 +31,7 @@ public class SendMailServlet {
 	public void send(String title, String email, String mesg, String contant) {
 		String host = "smtp.naver.com";
 	    String subject = title;
-	    String from = "gijunzzang@naver.com"; //보내는 메일
+	    String from = "acorn1324@naver.com"; //보내는 메일
 	   String fromName = "Acorn 쇼핑몰";
 	    String to = email; //받는 메일
 	    String content =  mesg +"\n"+ contant;
@@ -80,7 +80,7 @@ public class SendMailServlet {
 		@RequestMapping("/mail")
 		public String mail(MailDTO dto, HttpSession session) {
 		
-			System.out.println(dto);
+			System.out.println("들어왔니?:"+dto);
 		List<MemberDTO> list = service.memberSelect();
 		HashMap<String, String> map = new HashMap<>();
 		 String mesg = null;		
@@ -91,29 +91,29 @@ public class SendMailServlet {
 			System.out.println(x.getEmail1());
 			System.out.println(x.getEmail2());
 
-			 if(dto.getGradenoS()==null) {
+			if(dto.getGradenoS()==null) {
 				// nextPage="gradeMail.html";
 				 session.setAttribute("mesg", "등급이 정해져 있지 않습니다.");
 			 }else {
 				// nextPage="SendMailServlet";
-				 if("silver".equals(x.getGradeno())) {
-					 mesg = "고객님은 S등급 회원으로써"+ dto.getGradenoS()+"%할인 쿠폰을 보내드립니다";
-				 } else if("A급".equals(x.getGradeno())) {
-					 mesg = "고객님은 A등급 회원으로써"+ dto.getGradenoA()+"%할인 쿠폰을 보내드립니다";
-				 } else if("B급".equals(x.getGradeno())) {
-					 mesg = "고객님은 B등급 회원으로써"+ dto.getGradenoB()+"%할인 쿠폰을 보내드립니다";
-				 } else if("C급".equals(x.getGradeno())) {
-					 mesg = "고객님은 C등급 회원으로써"+ dto.getGradenoC()+"%할인 쿠폰을 보내드립니다";
-				 } else if("D급".equals(x.getGradeno())) {
-					 mesg = "고객님은 D등급 회원으로써"+ dto.getGradenoD()+"%할인 쿠폰을 보내드립니다";
+				 if("diamond".equals(x.getGradeno())) {
+					 mesg = "고객님은 Diamond 등급 회원으로써"+ dto.getGradenoS()+"%할인 쿠폰을 보내드립니다";
+				 } else if("platinum".equals(x.getGradeno())) {
+					 mesg = "고객님은 Platinum 등급 회원으로써"+ dto.getGradenoA()+"%할인 쿠폰을 보내드립니다";
+				 } else if("gold".equals(x.getGradeno())) {
+					 mesg = "고객님은 Gold 등급 회원으로써"+ dto.getGradenoB()+"%할인 쿠폰을 보내드립니다";
+				 } else if("silver".equals(x.getGradeno())) {
+					 mesg = "고객님은 Silver 등급 회원으로써"+ dto.getGradenoC()+"%할인 쿠폰을 보내드립니다";
+				 } else if("bronze".equals(x.getGradeno())) {
+					 mesg = "고객님은 Bronze 등급 회원으로써"+ dto.getGradenoD()+"%할인 쿠폰을 보내드립니다";
 				 }
 				 
-				 map.put("mailTo", x.getEmail1()+x.getEmail2());
+				 map.put("mailTo", x.getEmail1()+"@"+x.getEmail2());
 				 map.put("title", dto.getTitle());
 				 map.put("contents", dto.getContents());
 				 map.put("gradeno", x.getGradeno());
 				 map.put("mesg",mesg);
-				 send(dto.getTitle(),x.getEmail1()+x.getEmail2(), mesg, dto.getContents());
+				 send(dto.getTitle(),x.getEmail1()+"@"+x.getEmail2(), mesg, dto.getContents());
 				 System.out.println(x.getUserid()+mesg);
 			 }
 		}	
