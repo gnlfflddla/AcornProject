@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,26 +15,26 @@
 		<tr>
 			<td colspan="6">
 				<form action="search">
-					<select name="kind" size="1">
+					<select name="kind" id="kind" size="1">
 						<option value="1">공지사항</option>
 						<option value="2">이벤트</option>
 						<option value="3">QnA</option>
 					</select>
-					<select name="searchName" size="1">
+					<select name="searchName" id="searchName" size="1">
 						<option value="author">작성자</option>
 						<option value="title">글제목</option>
-					</select> <input type="text" name="searchValue"> <input
-						type="submit" value="찾기">
+					</select> <input type="text" name="searchValue" id="searchValue"> <input
+						type="submit" id="sub" value="찾기">
 				</form>
 			</td>
 		</tr>
 		<tr>
-			<td>번호</td>
-			<td>분류</td>
-			<td>제목</td>
-			<td>작성자</td>
-			<td>날짜</td>
-			<td>조회수</td>
+			<td><b>번호</b></td>
+			<td><b>분류</b></td>
+			<td><b>제목</b></td>
+			<td><b>작성자</b></td>
+			<td><b>날짜</b></td>
+			<td><b>조회수</b></td>
 		</tr>
 		<c:forEach items="${boardList.list}" var="dto">
 			<tr>

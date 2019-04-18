@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<link rel="stylesheet" type="text/css" href="../css/css.css">
 <p class = "font">
 <!-- 여기 껍데기로 보내기 빼고 바로 jsp로 보냈음 -->
 
@@ -11,7 +12,7 @@
 	<c:when test="${login != null}">
 		<a href="logout" >로그아웃</a>&nbsp;&nbsp;
 		<a href="myPage">나의정보</a>&nbsp;&nbsp;
-		<a href="choolcheckUI">출석체크</a>&nbsp;&nbsp;
+		<a href="choolCheck">출석체크</a>&nbsp;&nbsp;
 		<c:if test="${login.gradeno eq 'admin'}">
 		<a href="productAddForm">상품등록</a>&nbsp;&nbsp;
 		</c:if>

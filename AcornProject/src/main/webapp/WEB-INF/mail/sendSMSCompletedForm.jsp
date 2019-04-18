@@ -11,6 +11,6 @@ ${phone1}-${phone2}-${phone3}로
 
 저희 쇼핑몰을 이용해주셔서 감사합니다.<br><br>
 
-<a href="MainServlet"><button>확인</button></a><br><br>
-<a href="LoginUIServlet"><button>로그인</button></a>
+<a href="main"><button>확인</button></a><br><br>
+<a href="loginUI"><button>로그인</button></a>
 

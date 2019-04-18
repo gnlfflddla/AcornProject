@@ -1,11 +1,9 @@
 package com.controller.member;
 
 import java.io.IOException;
-import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +11,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.MemberDTO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.oauth.NaverCatpcha;
 import com.oauth.NaverLoginBO;
 import com.service.MemberService;
 
@@ -31,7 +27,9 @@ public class LoginController {
 
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
-
+	
+	private NaverCatpcha naverCatpcha = new NaverCatpcha();
+	
 	/* NaverLoginBO */
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
@@ -43,31 +41,54 @@ public class LoginController {
 
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
-
+	
+	int num = 0;
 
 	@RequestMapping("/login")
-	public String login(@RequestParam("userid") String userid,
-						@RequestParam("passwd") String passwd,
-						HttpSession session, Model m) {
-		
+	public String login(@RequestParam("userid") String userid, @RequestParam("passwd") String passwd,
+			@RequestParam(value = "catpcha", required = false) String catpcha, HttpSession session, Model m) {
+		String img = "";
 		String nextPage = null;
-		
-		String bcrypt=service.pw(userid);	
-		if(bcrypt==null) {
-			session.setAttribute("mesg", "없는 아이디 입니다.");
-			nextPage = "redirect:/loginUI"; 
-		}else if(passwordEncoder.matches(passwd,bcrypt)){
-			
-			MemberDTO dto = service.login(userid);
-			if (dto != null) {
-				session.setAttribute("login", dto);
-				nextPage = "/main";
-			} 
-			
-		}else {
-			session.setAttribute("mesg", "비빌번호를 확인해주세요.");
-			nextPage = "redirect:/loginUI"; 
+		String result = "";
+		String bcrypt = service.pw(userid);
+		System.out.println(catpcha);
+		if (catpcha != null) {
+			String k = (String) session.getAttribute("key");
+			result = naverCatpcha.APIExamCaptchaNkeyResult(k, catpcha);
+			System.out.println(result);
 		}
+			if (bcrypt == null) {
+				session.setAttribute("mesg", "없는 아이디 입니다.");
+
+				nextPage = "redirect:/loginUI";
+
+			} else if (result!=""?passwordEncoder.matches(passwd, bcrypt)&&result.equals("true"):passwordEncoder.matches(passwd, bcrypt)) {
+				MemberDTO dto = service.login(userid);
+				if (dto != null) {
+					session.removeAttribute("key");
+					session.removeAttribute("img");
+					session.setAttribute("login", dto);
+					System.out.println(dto);
+					nextPage = "redirect:/main";
+				}
+				num=0;
+				
+			} else {
+				session.setAttribute("mesg", "비빌번호를 확인해주세요.");
+				nextPage = "redirect:/loginUI";
+				num++;
+				String key = "";
+				if (num > 3) {
+					System.out.println("캡차");
+					key = naverCatpcha.APIExamCaptchaNkey();
+					img = naverCatpcha.APIExamCaptchaImage(key);
+					System.out.println(img);
+					img += ".jpg";
+					session.setAttribute("img", img);
+					session.setAttribute("key", key);
+
+				}
+			}
 
 		return nextPage;
 	}

@@ -1,0 +1,61 @@
+
+h1{
+	margin-left:100px;
+}
+
+table{
+	font-family:1em,Verdana,Dotum,AppleGothic,sans-serif;
+	border-collapse:collapse; 
+	border:0; 
+	border-spacing:0px; 
+	border-top:2px solid #e0e0e0;
+	border-bottoom:3px solid #e0e0e0; 
+	padding-left:100px;
+	width:80% 
+}
+
+td{
+	padding:5px 0 18px 18px; 
+	border-bottom:2px solid#e0e0e0;
+	
+	}
+
+form{
+	font:sans-serif;
+	padding-right:10px;
+	padding-top:10px;
+	padding-bottom:0px;
+	margin-bottom:0px;
+	}
+
+
+#kind{
+	
+	height:30px;
+	width:150px;
+	font-size:18px;
+	padding-bottom:5px;
+	maring-right:10px;
+}
+
+#searchName{
+	height:30px;
+	width:150px;
+	font-size:18px;
+	padding-bottom:5px;
+	maring-right:10px;
+	
+}
+
+#searchValue{
+	height:30px;
+	width:230px;
+	padding-top:4px;
+}
+
+#sub{
+	
+	height:30px;
+	width:100px;
+}
+

@@ -48,7 +48,7 @@ public class MailContoller {
 				String text = dto.getText();
 				String mailTo = dto.getMailTo();
 
-				helper.setFrom("swih0910@naver.com");
+				helper.setFrom("acorn1324@naver.com");
 				helper.setTo(mailTo);
 				helper.setSubject("acorn 쇼핑몰");
 				helper.setText(text, true);

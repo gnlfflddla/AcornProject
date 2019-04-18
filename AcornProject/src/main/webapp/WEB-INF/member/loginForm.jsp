@@ -56,22 +56,37 @@
 	});
 </script>
 <form action="login" method="post">
-<table>
+<table border="1">
 <tr>
 <td>아이디</td>
-<td><input type="text" name="userid" id="userid"></td>
+<td ><input type="text" name="userid" id="userid"></td>
 </tr>
 <tr>
 <td>비밀번호</td>
 <td><input type="password" name="passwd" id="passwd"></td>
 </tr>
+<c:if test="${!empty img}">
+<tr>
+<td colspan="2">
+<img src="/images/captcha/${img}"><br>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="text" name="catpcha" id="catpcha">
+</td>
+<tr>
+</c:if>
 </table>
 <span id="mesg"></span><br>
 <input type="submit" value="로그인" id="sub">
 </form>
+<div id="img">
 <a href="${url}">
 <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
 </a>
+</div>
+
 <div class="butt">
 <jsp:include page="../common/search.jsp"/>
 </div>

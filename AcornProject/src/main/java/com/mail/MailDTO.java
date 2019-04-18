@@ -3,7 +3,7 @@ package com.mail;
 public class MailDTO {
 
 	private  String mailTo;
-	private String from="swih0910@naver.com";
+	private String from="acorn1324@naver.com";
 	private  String subject="acorn 쇼핑몰 인증번호 발송";
 	private  String text;
 	public MailDTO() {

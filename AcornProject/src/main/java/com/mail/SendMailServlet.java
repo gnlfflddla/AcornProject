@@ -96,7 +96,7 @@ public class SendMailServlet {
 				 session.setAttribute("mesg", "등급이 정해져 있지 않습니다.");
 			 }else {
 				// nextPage="SendMailServlet";
-				 if("S급".equals(x.getGradeno())) {
+				 if("silver".equals(x.getGradeno())) {
 					 mesg = "고객님은 S등급 회원으로써"+ dto.getGradenoS()+"%할인 쿠폰을 보내드립니다";
 				 } else if("A급".equals(x.getGradeno())) {
 					 mesg = "고객님은 A등급 회원으로써"+ dto.getGradenoA()+"%할인 쿠폰을 보내드립니다";
@@ -118,7 +118,7 @@ public class SendMailServlet {
 			 }
 		}	
 			
-				return "main";
+				return "redirect:main";
 	}
 		 	
 

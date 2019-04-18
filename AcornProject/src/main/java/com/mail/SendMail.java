@@ -28,7 +28,7 @@ public class SendMail {
 				String text=dto.getText();
 				String mailTo=dto.getMailTo();
 				
-				helper.setFrom("swih0910@naver.com"); 
+				helper.setFrom("acorn1324@naver.com"); 
 				helper.setTo(mailTo); 
 				helper.setSubject( "acorn 쇼핑몰 인증번호 발송"); 
 				helper.setText("인증번호:"+ text , true); 

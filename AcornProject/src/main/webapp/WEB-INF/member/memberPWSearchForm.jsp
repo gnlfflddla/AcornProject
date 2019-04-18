@@ -28,7 +28,6 @@ alert('${mesg}');
 		});
 		
 		//이메일 선택
-		//이메일 선택
 		$("#emailselector").on("change", function() {
 			var email2 = $("#email2").val();
 			var emailSelect = $(this).val();
